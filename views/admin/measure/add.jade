@@ -1,0 +1,36 @@
+extends ../../../layouts/admin
+
+block head
+    title 你的测评
+
+block body
+    div.row
+        div.col-sm-8
+            div.page-header
+                h1 测评任务分配 
+                ul.measurements
+                    each person,i in data
+                        li
+                            div.col-sm-2 #{person.name.first}
+                            div.col-sm-2 #{person.phone}
+                            div.col-sm-4 #{person.name.middle}
+                            div.col-sm-4 #{person.zip}
+
+        div.col-sm-4
+            .page-header
+                h1 按钮
+            form(method='post', action='/admin/measure/add')
+                div.form-group
+                    button.btn.btn-primary.btn-signup(type='submit') 分配副中队长的测评任务  
+            form(method='post', action='/admin/measure/add/gaoji')
+                div.form-group
+                    button.btn.btn-primary.btn-signup(type='submit') 分配高级岗的测评任务  
+            form(method='post', action='/admin/measure/add/m')
+                div.form-group
+                    button.btn.btn-primary.btn-signup(type='submit') 分配主管的测评任务  
+            form(method='post', action='/admin/measure/add/normal')
+                div.form-group
+                    button.btn.btn-primary.btn-signup(type='submit') 分配航线的测评任务  
+            form(method='post', action='/admin/measure/add/support')
+                div.form-group
+                    button.btn.btn-primary.btn-signup(type='submit') 分配维修支持的测评任务  

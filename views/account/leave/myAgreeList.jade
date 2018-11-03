@@ -1,0 +1,45 @@
+extends ../../../layouts/account
+
+block head
+    title 我的待审批假条
+
+block body
+    div.row
+        div.col-sm-8
+            div.page-header
+                h4 假条审批（主管才有权限）
+            div.page-body
+                ul.nav.nav-tabs
+                    li(role="presentation")
+                        a(href="/account/agree/") 待审批
+                    li(role="presentation")
+                        a(href="/account/agreed/") 通过的
+                    li(role="presentation")
+                        a(href="/account/disagreed/") 驳回的
+                div.list-group
+                    each leave,i in data
+                        a.list-group-item(href="/account/leave/myAgreeDetail/#{leave._id}")
+                            h4.list-group-item-heading #{leave.creator.name}申请的#{leave.startDate}至#{leave.endDate}
+                            case leave.type
+                                    when "nian"
+                                        span.bg-success 休假
+                                    when "ti"
+                                        span.bg-info 替班
+                                    when "huan"
+                                        span.bg-warning 换班
+                                span 的请假条
+                                span
+                                case leave.status
+                                    when "draft"
+                                        span.label.label-info 草稿
+                                    when "proposing"
+                                        span.label.label-warning 审批中
+                                    when "denied"
+                                        span.label.label-danger 驳回审批
+                                    when "passed"
+                                        span.label.label-success 审批通过
+                                    when "finished"
+                                        span.label.label-default 已销假
+                                    when "synchronized"
+                                        span.label.label-default 已同步
+                            p.list-group-item-text 理由：#{leave.general} 

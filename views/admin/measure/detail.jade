@@ -1,0 +1,38 @@
+extends ../../../layouts/admin
+
+block head
+    title 你的测评
+
+block body
+    div.row
+        div.col-sm-8
+            div.page-header
+                h1 个人测评结果详情
+                ul.measurements
+                 form(method='post', action='/admin/measure/detail/')
+                    div.panel.panel-success
+                        div.panel-body 
+                            div.form-group
+                                label 测评人
+                                select.form-control(name='whoMeasure')
+                                    option(value='')
+                                    each person,i in data
+                                        option(value=person.name.first) #{person.name.first}
+                                label 被测评人
+                                select.form-control(name='whoMeasured')
+                                    option(value='')
+                                    each person,i in data
+                                        option(value=person.name.first) #{person.name.first}
+                            div.form-group
+                                button.btn.btn-primary.btn-signup.btn-block(type='submit') 查询成绩
+             ul.measurements
+                each detail in details
+                    li
+                        div.col-sm-3 #{detail.name} 对 #{detail.nameToBeMeasured}
+                        div.col-sm-3 #{detail.score} 
+                        div.col-sm-6 #{detail.isFinished} 
+
+        div.col-sm-4
+            .page-header
+                h2 #{scoreString}
+                h2 最终得分#{score}

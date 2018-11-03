@@ -1,0 +1,37 @@
+extends ../../../layouts/account
+
+block head
+  title #{article.title}
+
+block body
+  div.row
+    div.col-sm-4
+        div.page-header
+            h1 #{article.title}
+        p 发布人： #{article.creator}
+        p.lead 概述 #{article.general}
+    div.col-sm-8
+        div.page-header
+            h1 阅签记录
+        h3 签阅人员名单
+        div.container-fluid
+                
+                    div.col-sm-12
+                        table.table.table-striped
+                            thead
+                                tr
+                                    th 姓名
+                                    th 员工号
+                                    th 阅签
+                                    th 时间
+                            tbody
+                                each reader in article.readers
+                                    tr
+                                        td #{reader.name}
+                                        td #{reader.username} 
+                                        td 
+                                            if reader.isFinished
+                                                span.text-success 已经签阅
+                                            else
+                                                span.text-danger 未签阅
+                                        td #{reader.fTime}

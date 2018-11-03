@@ -1,0 +1,57 @@
+extends ../../../layouts/account
+
+block head
+  title 申请一个无需替换班的假
+
+block body
+    div.row
+        form(method='post', action='/account/leave/add/nian/',)
+            div.col-sm-8
+                div.page-header
+                    h1 无需替换班的假
+                div.form-group
+                    label 类型（必选）
+                    select.form-control(name='type' required="required")
+                        option(value='nian') 无需替换班的请假
+                div.form-group
+                    label 理由备注：（必填）
+                    textarea.form-control(type='text', rows="3" placeholder="请假事项或者理由" name='general' required="required")
+                div.form-group
+                    label 去向：（必填）
+                    input.form-control(type='text', rows="3" placeholder="去向：城市" name='destination' required="required")
+                div.form-group
+                    label 开始日期：（必填）
+                    input.form-control(type='date', name='startDate' required="required") 
+                div.form-group
+                    label 结束日期：（必填）
+                    input.form-control(type='date', name='endDate' required="required") 
+                div.form-group
+                    label 涉及的工作日（必填）
+                    textarea.form-control(type='text', rows="3" placeholder="格式：20170301 夜班；20170303 白班" name='nianWorkDay' required="required")
+                div.form-group
+                    label 申请人主管
+                    select.form-control(name='applicantSupervisor')
+                        each person in persons
+                            option(value='#{person.phone}') #{person.name.first}
+                div.form-group
+                    label 审批经理
+                    select.form-control(name='manager')
+                        each manager in managers
+                            option(value='#{manager.phone}') #{manager.name.first}
+                div.form-group
+                    button.btn.btn-default.btn-signup.btn-block(type='submit') 保存为草稿
+            div.col-sm-4
+                div.page-header
+                    h1 无需替换班的假
+                div.page-body
+                    p 包含年假，婚假，出差等无需替换班的请假申请
+                    p 审批人为：
+                        ol 
+                            li 分队主管
+                            li 维修基地经理
+                    p 抄送给：（请假单通过后，后台自动执行）
+                        ol 
+                            li 考勤表负责人
+    script(src='/assets/js/vendor/jquery.min.js')
+    script(src='/assets/js/confirm.js')
+

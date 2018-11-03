@@ -1,0 +1,44 @@
+extends ../../../layouts/default
+
+block head
+  title 忘记密码？
+
+block feet
+  script(src='/views/login/forgot/index.min.js?#{cacheBreaker}')
+
+block body
+  div.row
+    div.col-sm-6
+      div.page-header
+        h1 忘记密码？
+      div#forgot
+
+  script(type='text/template', id='tmpl-forgot')
+    form
+      div.alerts
+        |<% _.each(errors, function(err) { %>
+        div.alert.alert-danger
+          button.close(type='button', data-dismiss='alert') &times;
+          |<%- err %>
+        |<% }); %>
+        |<% if (success) { %>
+        div.alert.alert-info
+          button.close(type='button', data-dismiss='alert') &times;
+          | 如果邮箱地址正确，一封确认邮件已经发到了你的邮箱
+        |<% } %>
+      |<% if (!success) { %>
+      div.form-group(class!='<%- errfor.email ? "has-error" : "" %>')
+        label 你的公司邮箱地址:（公司邮箱可能会被拦截，在左下角的邮件网关中寻找）
+        input.form-control(type='text', name='email', value!='<%= email %>')
+        span.help-block <%- errfor.email %>
+      |<% } %>
+      div.form-group
+        |<% if (!success) { %>
+        button.btn.btn-primary.btn-forgot(type='button') 发送确认邮件
+        |<% } %>
+        |&nbsp;
+        a.btn.btn-link(href='/login/') 返回到登录
+      ul
+        li 如果邮箱不能收到邮件，可能是被拦截，在左下角的<a href="/media/mail.jpg">邮件网关</a>中寻找;
+        li 部分人员没有公司邮箱的，请尝试密码：123456,进入后一定要修改密码。
+        li 如有疑问请联系王征亚。

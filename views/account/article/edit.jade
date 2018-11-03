@@ -1,0 +1,75 @@
+extends ../../../layouts/account
+
+block head
+  title 编辑阅签
+
+block body
+    div.row
+        form(method='post', action='/account/article/edit/#{article._id}/',)
+            div.col-sm-12
+                div.page-header
+                    h1 编辑阅签
+                    p 目前附件不可编辑
+                div.form-group
+                    label 标题：（必填）
+                    input.form-control(type='text', name='title' placeholder="标题" value="#{article.title}" required="required")
+                div.form-group
+                    label 是否重要：
+                        if article.isImportant
+                            input(type='checkbox', name='isImportant' checked="#{article.isImportant}")
+                        else
+                            input(type='checkbox', name='isImportant')
+                label 选择人员（必填）(需多于一人，否则无效)
+                select(multiple="multiple" required="required" name="toPersons")
+                    optgroup(label="乘务长")
+                        each person in persons
+                            case person.name.last
+                                when "乘务长"
+                                    if person.selected
+                                        option(value="#{person.phone}/#{person.name.first}" selected="#{person.selected}") #{person.name.first}
+                                    else
+                                        option(value="#{person.phone}/#{person.name.first}") #{person.name.first}
+                    optgroup(label="头等舱")
+                        each person in persons
+                            case person.name.last
+                                when "头等舱"
+                                    if person.selected
+                                        option(value="#{person.phone}/#{person.name.first}" selected="#{person.selected}") #{person.name.first}
+                                    else
+                                        option(value="#{person.phone}/#{person.name.first}") #{person.name.first}
+                    optgroup(label="经济舱乘务员")
+                        each person in persons
+                            case person.name.last
+                                when "经济舱乘务员"
+                                    if person.selected
+                                        option(value="#{person.phone}/#{person.name.first}" selected="#{person.selected}") #{person.name.first}
+                                    else
+                                        option(value="#{person.phone}/#{person.name.first}") #{person.name.first}
+                    optgroup(label="其他")
+                        each person in persons
+                            case person.name.last
+                                when "其他"
+                                    if person.selected
+                                        option(value="#{person.phone}/#{person.name.first}" selected="#{person.selected}") #{person.name.first}
+                                    else
+                                        option(value="#{person.phone}/#{person.name.first}") #{person.name.first}
+                div.form-group
+                    label 概述：（必填）
+                    textarea.form-control(type='text', rows="5" placeholder="签阅内容的概述，字数最好不要超过300字" name='general' required="required") #{article.general}
+                div.form-group
+                    label 发布人：（必填）
+                    input.form-control(type='text', name='creator' value="#{article.creator}" required="required")                    
+                div.form-group
+                    label 截至时间：（必填）
+                    input.form-control(type='date', name='timeFinished' value="#{article.timeFinished}" required="required") 
+                div.form-group
+                    label 正文：（必填）
+                    textarea.form-control(type='text', rows="20" placeholder="正文" name='body' id="editor" required="required") #{article.body}
+                div.form-group
+                    button.btn.btn-primary.btn-signup.btn-block(type='submit') 修改阅签
+    script(src='/assets/js/vendor/jquery.min.js')
+    script(src='/assets/mutiselect/multiple-select.js')
+    script(src='/assets/js/checkboxSelect.js')
+    script(src='/ckeditor/ckeditor.js')
+    script
+        | CKEDITOR.replace('editor');

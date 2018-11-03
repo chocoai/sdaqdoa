@@ -1,0 +1,19 @@
+extends ../../layouts/default
+
+block head
+  title 查询飞机状况
+
+block neck
+  link(rel='stylesheet', href='/views/about/index.min.css?#{cacheBreaker}')
+  link(rel='stylesheet', href='/views/airplane/style.css')
+block body
+  div.row
+     form(method='post', action='/airplane/',)
+            div.col-sm-8
+                div.page-header
+                    h1 查询飞机状况
+                div.form-group
+                    label 输入飞机号：（无需B-）
+                    input.form-control(type='number', name='planeNO' min="1000" max="9999" placeholder="如：1987，无需B-" required="required")
+                div.form-group
+                    button.btn.btn-primary.btn-signup.btn-block(type='submit') 查询，耐心等候

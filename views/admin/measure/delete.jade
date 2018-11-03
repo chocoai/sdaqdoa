@@ -1,0 +1,25 @@
+extends ../../../layouts/admin
+
+block head
+    title 测评结果
+
+block body
+    div.row
+        div.col-sm-8
+            div.page-header
+                h1 测评结果
+                form(method='post', action='/admin/measure/delete/')
+                    div.panel.panel-success
+                        div.panel-body 
+                            div.form-group
+                                label 测评人
+                                select.form-control(name='whoMeasure')
+                                    option(value='')
+                                    each person,i in persons
+                                        option(value=person) #{person}
+                            div.form-group
+                                button.btn.btn-primary.btn-signup.btn-block(type='submit') 删除测评
+
+        div.col-sm-4
+            .page-header
+                h1 其他

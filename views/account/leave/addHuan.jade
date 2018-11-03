@@ -1,0 +1,82 @@
+extends ../../../layouts/account
+
+block head
+  title 申请一个替班
+
+block body
+    div.row
+        form(method='post', action='/account/leave/add/huan/',)
+            div.col-sm-8
+                div.page-header
+                    h1 申请一个替班
+                div.form-group
+                    label 类型（必选）
+                    select.form-control(name='type' required="required")
+                        option(value='huan') 换班
+                div.form-group
+                    label 理由备注：（必填）
+                    textarea.form-control(type='text', rows="3" placeholder="请假事项或者理由" name='general' required="required")
+                div.form-group
+                    label 去向：（必填）
+                    input.form-control(type='text', rows="3" placeholder="去向：城市" name='destination' required="required")
+                div.form-group
+                    label 休假开始日期：（必填）
+                    input.form-control(type='date', name='startDate' required="required") 
+                div.form-group
+                    label 休假结束日期：（必填）
+                    input.form-control(type='date', name='endDate' required="required") 
+                hr
+                div.form-group
+                    label 换班人
+                    select.form-control(name='respondent' required="required")
+                        each person in allPersons
+                            option(value='#{person.phone}') #{person.name.first}
+                div.form-group
+                    label 换班日期：（必填）
+                    input.form-control(type='date', name='tiDate' required="required") 
+                div.form-group
+                    label 换班类型（必选）
+                    select.form-control(name='tiType' required="required")
+                        option(value='白班') 白班
+                        option(value='夜班') 夜班
+                div.form-group
+                    label 还班日期：（必填）
+                    input.form-control(type='date', name='huanDate' required="required") 
+                div.form-group
+                    label 还班类型（必选）
+                    select.form-control(name='huanType' required="required")
+                        option(value='白班') 白班
+                        option(value='夜班') 夜班
+                hr
+                div.form-group
+                    label 申请人主管
+                    select.form-control(name='applicantSupervisor' required="required")
+                        each person in persons
+                            option(value='#{person.phone}') #{person.name.first}
+                div.form-group
+                    label 被申请人主管
+                    select.form-control(name='respondentSupervisor' required="required")
+                        each person in persons
+                            option(value='#{person.phone}') #{person.name.first}
+                div.form-group
+                    label 审批经理
+                    select.form-control(name='manager' required="required")
+                        each manager in managers
+                            option(value='#{manager.phone}') #{manager.name.first}
+                div.form-group
+                    button.btn.btn-default.btn-signup.btn-block(type='submit') 保存为草稿
+            div.col-sm-4
+                div.page-header
+                    h1 申请一个换班
+                div.page-body
+                    p.lead 替班：双向替班，一般为前后互换
+                    p 审批人为：
+                        ol 
+                            li 申请人分队主管
+                            li 被申请人分队主管
+                            li 维修基地经理
+                    p 抄送给：（请假单审批通过后，后台自动执行）
+                        ol 
+                            li 考勤表负责人
+    script(src='/assets/js/vendor/jquery.min.js')
+    script(src='/assets/js/confirm.js')

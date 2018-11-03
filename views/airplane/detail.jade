@@ -1,0 +1,11 @@
+extends ../../layouts/default
+
+block head
+  title 飞机详情
+
+block neck
+  link(rel='stylesheet', href='/views/about/index.min.css?#{cacheBreaker}')
+  link(rel='stylesheet', href='/views/airplane/style.css')
+block body
+  div.row
+    #{data}

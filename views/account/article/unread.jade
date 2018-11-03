@@ -1,0 +1,24 @@
+extends ../../../layouts/account
+
+block head
+    title 未读列表
+
+block body
+    div.row
+        div.col-sm-8
+            div.page-header
+                h1 未读列表
+            div.page-body
+                ul.nav.nav-tabs
+                        li(role="presentation")
+                            a(href="/account/article/") 所有阅签
+                        li(role="presentation")
+                            a(href="/account/article/unread/") 待阅文件
+                 div.list-group
+                    each article,i in data
+                        a.list-group-item(href="/account/article/detail/#{article._id}")
+                            h4.list-group-item-heading #{article.title}
+                                if article.isImportant
+                                    span.label.label-danger 重要
+                            p #{article.general} 
+                            p.text-right 截至日期：#{article.timeFinished}

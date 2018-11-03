@@ -1,0 +1,66 @@
+extends ../../../layouts/account
+
+block head
+    title 我的请假条
+
+block body
+    div.row
+        div.col-sm-8
+            div.page-header
+                h3 我的请假条
+            div.page-body
+                ul.nav.nav-tabs
+                    li(role="presentation")
+                        a(href="/account/leave/") 所有
+                    li(role="presentation")
+                        a(href="/account/leave/passed/") 已通过
+                    li(role="presentation")
+                        a(href="/account/leave/denied/") 已驳回
+                    li(role="presentation")
+                        a(href="/account/leave/finished/") 已销假
+                div.list-group
+                    each leave,i in data
+                        a.list-group-item(href="/account/leave/myDetail/#{leave._id}")
+                            h4.list-group-item-heading #{leave.creator.name}申请的#{leave.startDate}至#{leave.endDate}
+                            case leave.type
+                                    when "nian"
+                                        span.bg-success 休假
+                                    when "ti"
+                                        span.bg-info 替班
+                                    when "huan"
+                                        span.bg-warning 换班
+                                span 的请假条
+                                span
+                                case leave.status
+                                    when "draft"
+                                        span.label.label-info 草稿
+                                    when "proposing"
+                                        span.label.label-warning 审批中
+                                    when "denied"
+                                        span.label.label-danger 驳回审批
+                                    when "passed"
+                                        span.label.label-success 审批通过
+                                    when "finished"
+                                        span.label.label-default 已销假
+                                    when "synchronized"
+                                        span.label.label-default 已同步
+                            p.list-group-item-text 理由：#{leave.general} 
+        div.col-sm-4
+            .page-header
+                h2 添加新的假条
+            .page-body
+                div.col-sm-10
+                    p 年休假，出差，婚假等，无需人员替换
+                    a(href='/account/leave/add/nian/',class="btn btn-success btn-block")
+                        i.fa.fa-plus
+                        |   休班
+                div.col-sm-10
+                    p 替班（单向替班）
+                    a(href='/account/leave/add/ti/',class="btn btn-info btn-block")
+                        i.fa.fa-plus
+                        |   替班
+                div.col-sm-10
+                    p 换班（双向互换）
+                    a(href='/account/leave/add/huan/',class="btn btn-warning btn-block")
+                        i.fa.fa-plus
+                        |   换班

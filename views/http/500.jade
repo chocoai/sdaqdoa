@@ -1,0 +1,10 @@
+extends ../../layouts/default
+
+block head
+  title 服务器错误
+block body
+  h1 系统错误
+  p.lead
+    | 服务器故障，请联系王征亚
+  if err.stack
+    pre #{err.stack}

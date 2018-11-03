@@ -1,0 +1,28 @@
+extends ../../../layouts/admin
+
+block head
+    title 你的测评
+
+block body
+    div.row
+        div.col-sm-8
+            div.page-header
+                h1 所有人的测评 
+            ul.measurements
+                each person,i in data
+                    li
+                        div.col-sm-3 #{person.name}
+                        div.col-sm-7 
+                            div.progress
+                                div.progress-bar.progress-bar-success(role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: #{person.per}%")
+                                    span.sr-only 
+                        div.col-sm-2 #{person.finished}/#{person.all}
+
+
+        div.col-sm-4
+            .page-header
+                h1 按钮
+        form(method='post', action='/admin/measure')
+                div.form-group
+                    button.btn.btn-primary.btn-signup(type='submit') 实时监控测评情况 
+         

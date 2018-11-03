@@ -1,0 +1,31 @@
+extends ../../../layouts/account
+
+block head
+    title 你的测评
+
+block body
+    div.row
+        div.col-sm-8
+            div.page-header
+                h1 #{user.username}#{user.roles.account.name.full}的测评 
+            ul.measurements
+                each measurement,i in data
+                    li
+                        div.col-sm-5 您对
+                            strong #{measurement.nameToBeMeasured}
+                            | 的测评
+                            p 
+                        div.col-sm-3
+                            p 得分#{measurement.score}
+                        div.col-sm-4
+                            case measurement.isFinished
+                                when "true"
+                                    a(href='/account/measurement/#{measurement.type}/#{measurement._id}',class="btn btn-default") 修改测评
+                                when "false"
+                                    a(href='/account/measurement/#{measurement.type}/#{measurement._id}',class="btn btn-primary") 进入测评
+        div.col-sm-4
+            .page-header
+                h1 测评进度条#{progressbar.numOfFinished}/#{progressbar.numOfAll}
+            div.progress
+                div.progress-bar.progress-bar-success(role="progressbar"  aria-valuemin="0" aria-valuemax="100" style="width: #{progressbar.percent}%")
+                    span.sr-only 

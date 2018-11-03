@@ -1,0 +1,19 @@
+extends ../../../layouts/account
+
+block head
+    title 通知列表
+
+block body
+    div.row
+        div.col-sm-8
+            div.page-header
+                h1 通知列表
+            div.page-body
+                 div.list-group
+                    each noti,i in data
+                        a.list-group-item(href="/account/noti/detail/#{noti._id}")
+                            h4.list-group-item-heading #{noti.title}
+                                if noti.isImportant
+                                    span.label.label-danger 重要
+                            p 概述：#{noti.general} 
+                            p.text-right 截至日期：#{noti.timeFinished}

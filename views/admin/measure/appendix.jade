@@ -1,0 +1,33 @@
+extends ../../../layouts/admin
+
+block head
+    title 测评结果
+
+block body
+    div.row
+        div.col-sm-8
+            div.page-header
+                h1 备注
+                table.table.table-hover
+                    thead
+                        tr
+                            th 排名
+                            th 姓名
+                            th 岗位
+                            th 得分
+                    tbody
+                        tr
+                            th 00
+                            th 张三
+                            th 工程师工程师工程师工程师工程师
+                            th 100
+                        each person,i in data    
+                            tr
+                                th #{person.name}
+                                th #{person.nameToBeMeasured}
+                                th #{person.s3}
+                                th #{person.appendix3}
+
+        div.col-sm-4
+            .page-header
+                h1 其他

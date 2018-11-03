@@ -1,0 +1,36 @@
+extends ../../../layouts/admin
+
+block head
+    title 测评结果
+
+block body
+    div.row
+        div.col-sm-8
+            div.page-header
+                h1 测评结果
+                table.table.table-hover
+                    thead
+                        tr
+                            th 排名
+                            th 姓名
+                            th 岗位
+                            th 得分
+                    tbody
+                        tr
+                            th 00
+                            th 张三
+                            th 工程师工程师工程师工程师工程师
+                            th 100
+                        each person,i in data    
+                            tr
+                                th #{person.phone}
+                                th #{person.name.first}
+                                th #{person.name.last}
+                                th #{person.score}
+
+        div.col-sm-4
+            .page-header
+                h1 其他
+                form(method='post', action='/admin/measure/results/')
+                    div.form-group
+                        button.btn.btn-primary.btn-signup(type='submit') 重新计算结果

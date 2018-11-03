@@ -1,0 +1,77 @@
+extends ../../../layouts/account
+
+block head
+  title #{leave.startDate}至#{leave.endDate}的请假条
+
+block body
+  div.row
+    div.col-sm-8
+        div.page-header
+            h3 #{leave.creator.name}申请的#{leave.startDate}至#{leave.endDate}的请假条
+        h4.text-center.bg-primary 请假信息
+        p.lead 申请人： #{leave.creator.name}
+        p.lead 申请人岗位： #{leave.creator.position}
+        p.lead 请假理由: #{leave.general}
+        p.lead 去向: #{leave.destination}
+        p.lead 开始时间：#{leave.startDate}
+        p.lead 结束时间：#{leave.endDate}
+        hr
+        h4.text-center.bg-warning 上班调整信息
+        if leave.respondent.username
+            p.lead 替换班人：#{leave.respondent.name}
+            p.lead 岗位： #{leave.respondent.position}
+        if leave.applicantWorkDay.date
+            p.lead 替换班日期：#{leave.applicantWorkDay.date}
+            p.lead 替换班类型：#{leave.applicantWorkDay.type}
+        if leave.respondentWorkDay.date
+            p.lead 还班日期：#{leave.respondentWorkDay.date}
+            p.lead 还班类型：#{leave.respondentWorkDay.type}
+        if leave.nianWorkDay
+            p.lead 涉及的班次：#{leave.nianWorkDay}
+        hr
+        h4.text-center.bg-success 审批进度
+        if leave.applicantSupervisor.username
+            p 申请人主管：#{leave.applicantSupervisor.name}
+            div.col-sm-4
+                case leave.applicantSupervisor.result
+                    when "notYet"
+                        span.text-muted 未送审
+                    when "proposing"
+                        span.label.label-warning 审批中
+                    when "pass"
+                        span.label.label-success 通过
+                    when "reject"
+                        span.label.label-danger 驳回
+            div.col-sm-4
+                p #{leave.applicantSupervisor.comment}
+            hr
+        if leave.respondentSupervisor.username
+            p 替换班人主管：#{leave.respondentSupervisor.name}
+            div.col-sm-4
+                case leave.respondentSupervisor.result
+                    when "notYet"
+                        span.text-muted 未送审
+                    when "proposing"
+                        span.label.label-warning 审批中
+                    when "pass"
+                        span.label.label-success 通过
+                    when "reject"
+                        span.label.label-danger 驳回
+            div.col-sm-4
+                p #{leave.respondentSupervisor.comment}
+            hr
+        if leave.manager.username
+            p 基地经理：#{leave.manager.name}
+            div.col-sm-4
+                case leave.manager.result
+                    when "notYet"
+                        span.text-muted 未送审
+                    when "proposing"
+                        span.label.label-warning 审批中
+                    when "pass"
+                        span.label.label-success 通过
+                    when "reject"
+                        span.label.label-danger 驳回
+            div.col-sm-4
+                p #{leave.manager.comment}
+            hr

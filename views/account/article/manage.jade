@@ -1,0 +1,35 @@
+extends ../../../layouts/account
+
+block head
+    title 阅签列表
+
+block body
+    div.row
+        div.col-sm-12
+            div.page-header
+                h1 阅签列表
+                table.table.table-hover
+                    thead
+                        tr
+                            th #
+                            th 名称
+                            th 截至日期
+                            th 发布人
+                            th 操作
+                    tbody
+                        each article,i in data
+                            tr
+                                td #{i+1}
+                                td #{article.title}
+                                    if article.isImportant
+                                        span.label.label-danger 重要
+                                td #{article.timeFinished}
+                                td #{article.creator}
+                                td 
+                                    form(method='post', action='/account/article/delete/#{article._id}/')
+                                        a.btn.btn-default(href="/account/article/detail/#{article._id}") 查看 
+                                        a.btn.btn-warning(href="/account/article/edit/#{article._id}") 编辑
+                                        button.btn.btn-danger(type='submit') 删除
+                                    form(method='post', action='/account/article/wechat/#{article._id}/')
+                                        a.btn.btn-default(href="/account/article/record/#{article._id}") 记录查询
+                                        button.btn.btn-success(type='submit') 微信通知

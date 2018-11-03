@@ -1,0 +1,211 @@
+<style>
+	.fisrtline {
+	position: fixed;
+	}
+	.TR-Row {
+	background: #87CEEB;//SkyBlue
+	}
+	.AF-Row {
+	background-color: silver;
+	}
+	.PF-Row {
+	background-color: #C6DFC6;//moneygreen
+	}
+	.UN-Row {
+	background-color: purple;
+	}
+	.HasTime-Row {
+	background-color: yellow;
+	}
+	.AF-HasTime-Row {
+	background-color: yellow;
+	}
+	.PF-HasTime-Row {
+	background-color: yellow;
+	}
+	.TR-HasTime-Row {
+	background-color: yellow;
+	}
+	.Finished-Row {
+	background-color: white;
+	}
+	.AF-Finished-Row {
+	background-color: white;
+	}
+	.TR-Finished-Row {
+	background-color: white;
+	}
+	.PF-Finished-Row {
+	background-color: white;
+	}
+	.AOG-Row {
+	background-color: purple;
+	}
+	.am-table{width:100%;margin-bottom:1.6rem;border-spacing:0;border-collapse:separate}.am-table>tbody>tr>td,.am-table>tbody>tr>th,.am-table>tfoot>tr>td,.am-table>tfoot>tr>th,.am-table>thead>tr>td,.am-table>thead>tr>th{padding:.7rem;line-height:1.6;vertical-align:top;border-top:1px solid #ddd}.am-table>thead>tr>th{vertical-align:bottom;border-bottom:1px solid #ddd}.am-table>caption+thead>tr:first-child>td,.am-table>caption+thead>tr:first-child>th,.am-table>colgroup+thead>tr:first-child>td,.am-table>colgroup+thead>tr:first-child>th,.am-table>thead:first-child>tr:first-child>td,.am-table>thead:first-child>tr:first-child>th{border-top:0}.am-table>tbody+tbody tr:first-child td{border-top:2px solid #ddd}
+.am-btn-primary{color:#fff;background-color:#0e90d2;border-color:#0e90d2}
+  .am-btn{display:inline-block;margin-bottom:0;padding:.5em 1em;font-size:1.6rem;font-weight:400;line-height:1.2;text-align:center;white-space:nowrap;background-image:none;border:1px solid transparent;border-radius:0;cursor:pointer;outline:0;-webkit-appearance:none;user-select:none;-webkit-transition:background-color 300ms ease-out,border-color 300ms ease-out;transition:background-color 300ms ease-out,border-color 300ms ease-out}
+  .am-btn-sm{font-size:1.4rem}
+  .am-table-bordered,.am-table-radius{border:1px solid #ddd}
+  .am-table-bordered>tbody>tr>td,.am-table-bordered>tbody>tr>th,.am-table-bordered>tfoot>tr>td,.am-table-bordered>tfoot>tr>th,.am-table-bordered>thead>tr>td,.am-table-bordered>thead>tr>th{border:1px solid #ddd}.am-table-bordered>tbody>tr>td:first-child,.am-table-bordered>tbody>tr>th:first-child,.am-table-bordered>tfoot>tr>td:first-child,.am-table-bordered>tfoot>tr>th:first-child,.am-table-bordered>thead>tr>td:first-child,.am-table-bordered>thead>tr>th:first-child,
+	.am-text-nowrap{white-space:nowrap}[class*=am-align-]{margin-bottom:1rem}
+	.am-table-compact>tbody>tr>td,.am-table-compact>tbody>tr>th,.am-table-compact>tfoot>tr>td,.am-table-compact>tfoot>tr>th,.am-table-compact>thead>tr>td,.am-table-compact>thead>tr>th{padding:.4rem}
+ .am-table-hover>tbody>tr:hover>td,.am-table-hover>tbody>tr:hover>th{background-color:#e9e9e9}
+
+
+ 
+div#ButtonsFloat{
+	margin:2px;
+	width: 90px;
+	height: 68px;
+	line-height:68px; 
+	float:left;
+}
+
+a.Buttons{	  
+	background-color:#6E67A6;
+	width:100%;
+	height:100%;
+	overflow: hidden;
+	font-size:large;
+	display: block;
+	text-decoration: none;
+	color:#fff;
+	font-weight:bold;
+	text-transform:uppercase;
+	text-align:center;	
+	}
+a.Buttons:hover{
+	background-color:#8CCA33;
+	}
+div#BackButton {
+	width: 40px;
+	height: 35px;
+	line-height:35px;
+	float:left;
+	margin:2px;
+}
+a.BackButton{	   
+	background-color:#6E67A6;
+	width:100%;
+	height:100%;
+	overflow: hidden;
+	font-size:large;
+	display: block;
+	text-decoration: none;
+	color:#fff;
+	font-weight:bold;
+	text-transform:uppercase;
+	text-align:center;
+	}
+a.BackButton:hover	{
+	background-color:#8CCA33;
+	}
+
+div#FirstButton {
+	width: 40px;
+	height: 35px;
+	line-height:35px;
+	float:left;
+	margin:2px;
+}	
+a.FirstButton{  
+	background-color:#6E67A6;
+	width:100%;
+	height:100%;
+	overflow: hidden;
+	font-size:large;
+	display: block;
+	text-decoration: none;
+	color:#fff;
+	font-weight:bold;
+	text-transform:uppercase;
+	text-align:center;
+	}
+a.FirstButton:hover	{
+	background-color:#8CCA33;
+	}
+
+div#SecondButton {
+	width: 40px;
+	height: 35px;
+	line-height:35px;
+	float:left;
+	margin:2px;
+}	
+a.SecondButton{  
+	background-color:#6E67A6;
+	width:100%;
+	height:100%;
+	overflow: hidden;
+	font-size:large;
+	display: block;
+	text-decoration: none;
+	color:#fff;
+	font-weight:bold;
+	text-transform:uppercase;
+	text-align:center;
+	}
+a.SecondButton:hover	{
+	background-color:#8CCA33;
+	}
+div#QuickButton {
+	width: 40px;
+	height: 35px;
+	line-height:35px;
+	float:left;
+	margin:2px;
+}	
+a.QuickButton{  
+	background-color:#6E67A6;
+	width:100%;
+	height:100%;
+	overflow: hidden;
+	font-size:large;
+	display: block;
+	text-decoration: none;
+	color:#fff;
+	font-weight:bold;
+	text-transform:uppercase;
+	text-align:center;
+	}
+a.QuickButton:hover	{
+	background-color:#8CCA33;
+	}
+div#QuickMenu {
+	width: 40px;
+	height: 35px;
+	line-height:35px;
+	margin:2px;
+}
+a.QuickMenu{  
+	background-color:#6E67A6;
+	width:100%;
+	height:100%;
+	overflow: hidden;
+	font-size:large;
+	display: block;
+	text-decoration: none;
+	color:#fff;
+	font-weight:bold;
+	text-transform:uppercase;
+	text-align:center;
+	}
+div#MySubmitButton{
+	width: 60px;
+	height: 35px;
+	line-height:35px;
+}
+a.MySubmitButton {
+	background-color:#0e90d2;
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
+	font-size:large;
+	display: block;	
+	text-decoration: none;
+	color:#fff;
+	font-weight:bold;
+	text-transform:uppercase;
+	text-align:center;
+}
+ </style>

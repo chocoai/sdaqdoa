@@ -1,0 +1,49 @@
+extends ../../layouts/account
+
+block head
+  title 个人主页
+
+block neck
+  link(rel='stylesheet', href='/views/account/index.min.css?#{cacheBreaker}')
+
+block feet
+  script(src='/views/account/index.min.js?#{cacheBreaker}')
+
+block body
+  div.row
+    div.col-sm-6
+      div.page-header
+        h1 我的帐号
+      div.row
+        div.col-sm-4
+          div.well.stat
+            a.button(href="/account/article/") 
+              i.fa.fa-pencil-square
+              |  所有阅签
+        div.col-sm-4
+          div.well.stat
+            a.button(href="/account/article/unread/") 
+              i.fa.fa-bell
+              |  未读阅签
+        div.col-sm-4
+          div.well.stat
+            a.button(href="/account/leave/") 
+              i.fa.fa-bars
+              |  请假条
+      div.row
+        div.col-sm-4
+          div.well.stat
+            div.stat-value.day-of-year --
+            div.stat-label 今年天数
+        div.col-sm-4
+          div.well.stat
+            div.stat-value.week-of-year --
+            div.stat-label 今年周数
+        div.col-sm-4
+          div.well.stat
+            div.stat-value.day-of-week --
+            div.stat-label 星期
+    div.col-sm-6.special
+      div.page-header
+        h1 个人面板
+      i.fa.fa-dashboard.super-awesome

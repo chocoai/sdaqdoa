@@ -1,0 +1,115 @@
+extends ../../../layouts/account
+
+block head
+  title #{measurement.name}对#{measurement.nameToBeMeasured}的测评
+
+block body
+  div.row
+    div.col-sm-8
+        div.page-header
+            h1 #{measurement.nameToBeMeasured}
+                small &nbsp; 测评模板： 航线中队
+        form(method='post', action='/account/measurement/normal/#{measurement._id}/')
+            div.panel.panel-success
+                div.panel-heading
+                    h3.panel-title 1.敬业奉献
+                div.panel-body 
+                    ul.list-group 
+                        li.list-group-item.list-group-item-danger 工作过程中牢骚满腹，得过且过
+                            span.badge 0-14分
+                        li.list-group-item.list-group-item-warning 职责范围内，尽力完成程序或工作单规定以外的事项
+                            span.badge 15-19分
+                        li.list-group-item.list-group-item-success 对自己职责能够依据条件和要求深化和拓展，自愿主动承担责任范围之外的工作和任务
+                            span.badge 20-22分
+                    div.form-group
+                        label 评分:
+                        //input.form-control(type='number', placeholder="填写数字0-22" name='s1' value="19" min="0" max="22" required="required")   
+                        select.form-control(name='s1' value ='19'  required="required")
+                            each val in [22,21,20,19,18,17,16,15,14,13,12,11,10,9,8,7,6,5,4,3,2,1,0]
+                                option(value=val) #{val}分
+                        label 备注:
+                        textarea.form-control(type='text', rows="5" placeholder="评分为高于期望（20-22分）必填，用2016年发生的具体事件进行描述，字数在100字至150字之间。" name='d1')
+            div.panel.panel-success
+                div.panel-heading
+                    h3.panel-title 2.主动优化
+                div.panel-body 
+                    ul.list-group 
+                        li.list-group-item.list-group-item-danger 对主动优化和改进流程持抵触或消极态度，不愿意改进或只是被动接受
+                            span.badge 0-14分
+                        li.list-group-item.list-group-item-warning 能够发现和分析本岗位工作的问题，并主动优化改进或主动采纳优化方法
+                            span.badge 15-19分
+                        li.list-group-item.list-group-item-success 在自己主动优化基础上，还能够发现团队中他人工作或发展的问题，并提出改进建议
+                            span.badge 20-22分
+                    div.form-group
+                        label 评分:
+                        select.form-control(name='s2' value ='19'  required="required")
+                            each val in [22,21,20,19,18,17,16,15,14,13,12,11,10,9,8,7,6,5,4,3,2,1,0]
+                                option(value=val) #{val}分     
+                        label 备注:
+                        textarea.form-control(type='text', rows="5" placeholder="评分为高于期望（20-22分）必填，用2016年发生的具体事件进行描述，字数在100字至150字之间。" name='d2')
+            div.panel.panel-success
+                div.panel-heading
+                    h3.panel-title 3.诚信正直
+                div.panel-body 
+                    ul.list-group 
+                        li.list-group-item.list-group-item-danger 为了自己的利益，不上报信息或说谎，隐瞒安全事件的真相
+                            span.badge 0-14分
+                        li.list-group-item.list-group-item-warning 诚实坦率，如实汇报工作情况
+                            span.badge 15-19分
+                        li.list-group-item.list-group-item-success 为人坦诚、实事求是，敢于直接表达自己的观点，坚持立场
+                            span.badge 20-22分
+                    div.form-group
+                        label 评分:
+                        select.form-control(name='s3' value ='19'  required="required")
+                            each val in [22,21,20,19,18,17,16,15,14,13,12,11,10,9,8,7,6,5,4,3,2,1,0]
+                                option(value=val) #{val}分        
+                        label 备注:
+                        textarea.form-control(type='text', rows="5" placeholder="评分为高于期望（20-22分）必填，用2016年发生的具体事件进行描述，字数在100字至150字之间。" name='d3')
+            div.panel.panel-success
+                div.panel-heading
+                    h3.panel-title 4.严谨细致
+                div.panel-body 
+                    ul.list-group 
+                        li.list-group-item.list-group-item-danger 忽视安全细节，工作马马虎虎，粗心大意，不按照工作流程或检查单做事
+                            span.badge 0-14分
+                        li.list-group-item.list-group-item-warning 严格按照行为规范、工作程序开展工作，规定工作完成后，主动再次进行检查，避免有遗漏
+                            span.badge 15-19分
+                        li.list-group-item.list-group-item-success 跟踪和总结异常现象，对业务流程和规章手册进行细化和完善，完成本职工作后，主动检查他人工作是否遗漏或差错
+                            span.badge 20-22分
+                    div.form-group
+                        label 评分:
+                        select.form-control(name='s4' value ='19'  required="required")
+                            each val in [22,21,20,19,18,17,16,15,14,13,12,11,10,9,8,7,6,5,4,3,2,1,0]
+                                option(value=val) #{val}分        
+                        label 备注:
+                        textarea.form-control(type='text', rows="5" placeholder="评分为高于期望（20-22分）必填，用2016年发生的具体事件进行描述，字数在100字至150字之间。" name='d4')
+            div.panel.panel-success
+                div.panel-heading
+                    h3.panel-title 5.团队合作
+                div.panel-body 
+                    ul.list-group 
+                        li.list-group-item.list-group-item-danger 工作单打独斗，缺乏合作意识，不愿与人共同完成工作
+                            span.badge 0-14分
+                        li.list-group-item.list-group-item-warning 关心团队成员，乐于分享，主动为团队成员提供帮助，协助其完成工作
+                            span.badge 15-19分
+                        li.list-group-item.list-group-item-success 帮助团队成员明确角色和职责，促进有效合作，鼓励和增强团队成员的信心，帮助他人提升技能
+                            span.badge 20-22分
+                    div.form-group
+                        label 评分:
+                        select.form-control(name='s5' value ='19'  required="required")
+                            each val in [22,21,20,19,18,17,16,15,14,13,12,11,10,9,8,7,6,5,4,3,2,1,0]
+                                option(value=val) #{val}分       
+                        label 备注:
+                        textarea.form-control(type='text', rows="5" placeholder="评分为高于期望（20-22分）必填，用2016年发生的具体事件进行描述，字数在100字至150字之间。" name='d5')
+            div.form-group
+                button.btn.btn-primary.btn-signup.btn-block(type='submit') 提交成绩         
+
+        p
+            i.fa.fa-arrow-circle-left
+            a(href='/account/measurement/')  Go Back
+                
+    div.col-sm-4
+        div.page-header
+            h1 侧栏
+        p 评分为高于期望（20-22分）必填，用2016年发生的具体事件进行描述，字数在100字至150字之间。
+    script(src='/views/account/measurement/detail.js')

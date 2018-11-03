@@ -1,0 +1,38 @@
+extends ../../layouts/default
+
+block head
+  title 关于此次测评
+
+block neck
+  link(rel='stylesheet', href='/views/about/index.min.css?#{cacheBreaker}')
+
+block body
+  div.row
+    div.col-sm-6
+      div.page-header
+        h1 OA系统开发日志
+      div.media
+        a.pull-left(href='#')
+        div.media-body
+          h4.media-heading 人员范围：
+          p 北京中队全体员工
+      div.media
+        a.pull-left(href='#')
+        div.media-body
+          h4.media-heading 实现的功能：
+          ul
+            li 年底绩效测评 2016.12.27
+            li 通知下达 2017.01.15
+            li 微信企业号的连接 2017.01.14
+            li 请销假系统
+      div.media
+        a.pull-left(href='#')
+        div.media-body
+          h4.media-heading 计划开发功能功能：
+          ul
+            li 附件添加
+    div.col-sm-6.special
+      div.page-header
+        h1 通告
+      p.lead 更多功能正在开发中。。。。
+      i.fa.fa-volume-up.super-awesome

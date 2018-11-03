@@ -1,0 +1,76 @@
+doctype html
+html
+  head
+    block head
+      title #{title}
+    meta(name='viewport', content='width=device-width, initial-scale=1.0')
+    link(rel='stylesheet', href='/layouts/core.min.css?#{cacheBreaker}')
+    link(rel='stylesheet', href='/layouts/admin.min.css?#{cacheBreaker}')
+    link(rel='stylesheet', href='/layouts/style.css?#{cacheBreaker}')
+    block neck
+  body
+    div.navbar.navbar-inverse.navbar-fixed-top
+      div.container
+        div.navbar-header
+          a.navbar-brand(href='/admin/')
+            img.navbar-logo(src='/media/logo-symbol-64x64.png', alt='Logo')
+            span.navbar-brand-label #{projectName}
+          button.navbar-toggle.collapsed(data-toggle='collapse', data-target='.my-navbar-collapse')
+            span.icon-bar
+            span.icon-bar
+            span.icon-bar
+        div.navbar-collapse.my-navbar-collapse.collapse
+          ul.nav.navbar-nav
+            li.dropdown
+              a.dropdown-toggle(href='#', data-toggle='dropdown')
+                | 系统&nbsp;
+                span.caret
+              ul.dropdown-menu
+                li.dropdown-header 系统运行设置
+                li: a(href='/admin/statuses/') 状态
+                li: a(href='/admin/categories/') 分类
+                li.divider
+                li.dropdown-header 用户管理
+                li: a(href='/admin/users/') 帐号
+                li: a(href='/admin/accounts/') 用户信息
+                li: a(href='/admin/administrators/') 管理员
+                li: a(href='/admin/admin-groups/') 管理群组
+          form.navbar-form.pull-right#_search
+
+    div.page
+      div.container
+        != messages()
+        block body
+
+    div.footer
+      div.container
+        div.inner
+          span.copyright.pull-right
+            |&#169; #{copyrightYear} #{copyrightName}
+          ul.links
+            li: a(href='/') 首页
+            li: a(href='/logout/') 退出登录
+          div.clearfix
+
+    div.ajax-spinner
+      img(src='/media/ajax-pulse.gif', alt='Loading')
+
+    script(type='text/template', id='tmpl-_search')
+      div.dropdown
+        input.form-control(name='_search', type='text', placeholder='search', tab-index='1')
+        ul#_search-results-rows.dropdown-menu
+    script(type='text/template', id='tmpl-_search-results-row')
+      |<% if (type && type == 'header') { %>
+      |<%- name %>
+      |<% } else { %>
+      a(href!='<%= url %>') <%- name %>
+      |<% } %>
+    script(type='text/template', id='tmpl-_search-results-empty-row')
+      li.dropdown-header no docs matched
+
+    //if lte IE 9
+      script(src='/layouts/ie-sucks.min.js?#{cacheBreaker}')
+    script(src='/layouts/core.min.js?#{cacheBreaker}')
+    script(src='/layouts/admin.min.js?#{cacheBreaker}')
+
+    block feet

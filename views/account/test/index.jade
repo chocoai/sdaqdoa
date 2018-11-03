@@ -1,0 +1,30 @@
+extends ../../../layouts/account
+
+block head
+    title 功能测试
+
+block body
+    div.row
+        div.col-sm-8
+            div.page-header
+                h3 功能测试
+            div.page-body
+                form(method='post', action='/account/test/wechatCrop',)
+                    div.col-sm-12
+                        div.form-group
+                            label 文本
+                            textarea.form-control(type='text', rows="3" placeholder="内容" name='txt' required="required")
+                        div.form-group
+                            label 员工号
+                            input.form-control(type='text', placeholder="员工号" name='id' required="required")
+                         div.form-group
+                            button.btn.btn-success.btn-signup.btn-block(type='submit') 发送
+                         hr
+               
+        div.col-sm-4
+            .page-header
+                h2 备注
+            .page-body
+                div.col-sm-10
+                    p 测试，定时发送消息给威信企业号和企业威信
+                   

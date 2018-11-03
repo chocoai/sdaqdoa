@@ -1,0 +1,67 @@
+extends ../../../layouts/account
+
+block head
+  title #{article.title}
+
+block body
+  div.row
+    div.col-sm-8
+        div.page-header
+            h1 #{article.title}
+        p 发布人： #{article.creator}
+        p.lead 概述 #{article.general}
+        p !{article.body}
+        p 附件： 
+        a(href="http://sdabj.com:3000/uploads/#{article.files}") #{article.files}
+        p
+            a.btn.btn-default.btn-block(href='/account/article/')
+                i.fa.fa-arrow-circle-left
+                |   返回所有阅签列表
+        h2 评论区：
+        p 
+            each comment,i in article.comments
+                blockquote #{comment.cBody}
+                    p.text-right #{comment.cName}
+                        small #{comment.cTime}
+        form(method='post', action='/account/article/detail/comment/#{article._id}/')
+            button.btn.btn-success.btn-block(type="button" data-toggle="modal" data-target="#myModal") 添加评论
+            div.modal.fade(id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel")
+                div.modal-dialog(role="document")
+                    div.modal-content
+                        div.modal-header
+                            button.close(type="button" class="close" data-dismiss="modal" aria-label="Close")
+                                span(aria-hidden="true") &times;
+                            h4.modal-title(id="myModalLabel") 添加评论
+                        div.modal-body
+                            div.form-group
+                                label 添加评论：
+                                textarea.form-control(type='text', rows="5" placeholder="添加你的评论" name='comment' required)
+                        div.modal-footer
+                            div.form-group
+                                button.btn.btn-success(type='submit') 评论
+                                button.btn.btn-default(data-dismiss="modal") 关闭
+    div.col-sm-4
+        div.page-header
+            h1 阅签
+        form(method='post', action='/account/article/detail/gotIt/#{article._id}/')
+            div.form-group
+                label 阅签签到
+                case gotBtn
+                    when "need"
+                        button.btn.btn-warning.btn-signup.btn-block(type='submit') 阅签
+                    when "noNeed"
+                        button.btn.btn-default.btn-signup.btn-block(type='submit' disabled) 无需签到
+                    when "gotIt"
+                        button.btn.btn-warning.btn-signup.btn-block(type='submit' disabled) 已签到
+        h3 已经签阅人员名单
+        div.container-fluid
+            each reader in article.readers
+                if reader.isFinished
+                    div.col-sm-3.col-xs-3
+                        p.text-success #{reader.name}
+        h3 未签阅人员
+        div.container-fluid
+            each reader in article.readers
+                if !reader.isFinished
+                    div.col-sm-3.col-xs-3
+                        span.text-danger #{reader.name}

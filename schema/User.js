@@ -3,12 +3,16 @@
 exports = module.exports = function(app, mongoose) {
   var userSchema = new mongoose.Schema({
     username: { type: String, unique: true },
+    name:{ type: String},
+    dingtalk_id:{ type: String},//与username相同
     password: String,
-    email: { type: String, unique: true },
-    roles: {
-      admin: { type: mongoose.Schema.Types.ObjectId, ref: 'Admin' },
-      account: { type: mongoose.Schema.Types.ObjectId, ref: 'Account' }
-    },
+    source:{ type: String},//dingding/admin
+    email: { type: String},
+    department_id:{ type: String},
+    department_name:{ type: String},
+    avatar:{ type: String},
+    mobile:{ type: String},
+    roles: { type: String},
     isActive: String,
     timeCreated: { type: Date, default: Date.now },
     resetPasswordToken: String,
@@ -21,11 +25,13 @@ exports = module.exports = function(app, mongoose) {
     search: [String]
   });
   userSchema.methods.canPlayRoleOf = function(role) {
-    if (role === "admin" && this.roles.admin) {
+    if (this.roles === "admin" && role === "admin") {
+      console.log("role of admin");
       return true;
     }
 
-    if (role === "account" && this.roles.account) {
+    if (this.roles === "account" && role === "account") {
+      console.log("role of account");
       return true;
     }
 
@@ -33,7 +39,9 @@ exports = module.exports = function(app, mongoose) {
   };
   userSchema.methods.defaultReturnUrl = function() {
     var returnUrl = '/';
+    console.log("判断路径");
     if (this.canPlayRoleOf('account')) {
+
       returnUrl = '/account/';
     }
 

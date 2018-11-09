@@ -91,6 +91,21 @@ exports = module.exports = function(app, passport) {
   app.all('/admin*', ensureAdmin);
   app.get('/admin/', require('./views/admin/index').init);
 
+
+  //admin>dingtalk
+  app.get('/admin/dingtalk/', require('./views/admin/dingtalk/index').init);
+  app.post('/admin/dingtalk/sync/', require('./views/admin/dingtalk/index').sync);
+
+    //admin > noti //通知功能
+  app.get('/admin/noti/',require('./views/admin/noti/index').findall);
+  app.get('/admin/noti/add/',require('./views/admin/noti/add').add);
+  app.post('/admin/noti/add/',upload.single('avatar'),require('./views/admin/noti/add').create);
+  app.get('/admin/noti/manage/',require('./views/admin/noti/manage').findall);
+  app.get('/admin/noti/detail/:id',require('./views/admin/noti/index').detail);
+  app.post('/admin/noti/detail/comment/:id/', require('./views/admin/noti/index').comment);
+  app.post('/admin/noti/ding/:id/',require('./views/admin/noti/ding').noti);
+
+
   //admin > users
   app.get('/admin/users/', require('./views/admin/users/index').find);
   app.post('/admin/users/', require('./views/admin/users/index').create);

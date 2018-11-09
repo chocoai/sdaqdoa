@@ -100,8 +100,8 @@ exports.login = function(req, res){
           workflow.outcome.errors.push('帐号和密码不正确，或者帐号未激活');
           return workflow.emit('response');
         });
-      }
-      else {
+      }else {
+        //console.log(user);
         req.login(user, function(err) {
           if (err) {
             return workflow.emit('exception', err);

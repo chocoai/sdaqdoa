@@ -1,0 +1,54 @@
+extends ../../../layouts/admin
+
+block head
+  title #{noti.title}
+
+block body
+  div.row
+    div.col-sm-8
+        div.page-header
+            h1 #{noti.title}
+        p 发布人： #{noti.creator}
+        p 发布时间： #{noti.timeCreated}
+        p.lead 概述 #{noti.general}
+        p !{noti.body}
+        p 附件： 
+        a(href="http://sdabj.com:3333/uploads/#{noti.files}") #{noti.files}
+        p
+            a.btn.btn-default.btn-block(href='/admin/noti/')
+                i.fa.fa-arrow-circle-left
+                |   返回所有通知列表
+        h2 评论区：
+        p 
+            each comment,i in noti.comments
+                blockquote #{comment.cBody}
+                    p.text-right #{comment.cName}
+                        small #{comment.cTime}
+        form(method='post', action='/admin/noti/detail/comment/#{noti._id}/')
+            button.btn.btn-success.btn-block(type="button" data-toggle="modal" data-target="#myModal") 添加评论
+            div.modal.fade(id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel")
+                div.modal-dialog(role="document")
+                    div.modal-content
+                        div.modal-header
+                            button.close(type="button" class="close" data-dismiss="modal" aria-label="Close")
+                                span(aria-hidden="true") &times;
+                            h4.modal-title(id="myModalLabel") 添加评论
+                        div.modal-body
+                            div.form-group
+                                label 添加评论：
+                                textarea.form-control(type='text', rows="5" placeholder="添加你的评论" name='comment' required)
+                        div.modal-footer
+                            div.form-group
+                                button.btn.btn-success(type='submit') 评论
+                                button.btn.btn-default(data-dismiss="modal") 关闭
+    div.col-sm-4
+        div.page-header
+            h2 通知以下人员：
+        div
+            each team in teams
+                div.col-sm-12
+                    h4 #{team}
+                    p
+                        each reader in noti.readers
+                            if(team == reader.team)
+                                span.col-sm-3 #{reader.name}

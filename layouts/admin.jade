@@ -7,6 +7,7 @@ html
     link(rel='stylesheet', href='/layouts/core.min.css?#{cacheBreaker}')
     link(rel='stylesheet', href='/layouts/admin.min.css?#{cacheBreaker}')
     link(rel='stylesheet', href='/layouts/style.css?#{cacheBreaker}')
+    link(rel='stylesheet', href='/assets/mutiselect/multiple-select.css')
     block neck
   body
     div.navbar.navbar-inverse.navbar-fixed-top
@@ -29,13 +30,30 @@ html
                 li.dropdown-header 系统运行设置
                 li: a(href='/admin/statuses/') 状态
                 li: a(href='/admin/categories/') 分类
+                li: a(href='/admin/dingtalk/') 钉钉同步
                 li.divider
                 li.dropdown-header 用户管理
                 li: a(href='/admin/users/') 帐号
                 li: a(href='/admin/accounts/') 用户信息
                 li: a(href='/admin/administrators/') 管理员
                 li: a(href='/admin/admin-groups/') 管理群组
-          form.navbar-form.pull-right#_search
+          ul.nav.navbar-nav
+            li.dropdown
+              a.dropdown-toggle(href='#', data-toggle='dropdown')
+                i.fa.fa-paper-plane-o
+                |   基地通知&nbsp;
+                span.caret
+                ul.dropdown-menu
+                  li: a(href='/admin/noti/') 
+                    i.fa.fa-feed
+                    |  所有通知
+                  li.divider
+                  li: a(href='/admin/noti/add/') 
+                    i.fa.fa-plus
+                    |   发布通知
+                  li: a(href='/admin/noti/manage/') 
+                    i.fa.fa-briefcase
+                    |   管理通知
 
     div.page
       div.container

@@ -20,7 +20,7 @@ var config = require('./config'),
     querystring = require('querystring'),
     schedule = require("node-schedule");
 var API = wechat.API;
-var api = new API('wxf01fb15a9cbdef24', 'AU2gpQG0Ui_9P1dFdAgYMnnHMzmA0YsA859X8mkArFMgKCFOby-BF3busxniltMa', '28');
+//var api = new API('wxf01fb15a9cbdef24', 'AU2gpQG0Ui_9P1dFdAgYMnnHMzmA0YsA859X8mkArFMgKCFOby-BF3busxniltMa', '28');
 
 //create express app
 var app = express();
@@ -44,11 +44,11 @@ const upload = multer({
 app.config = config;
 
 //微信设置
-var wechatconfig = {
-  token: 'sdabjoa',
-  encodingAESKey: 'dX7eoxCZxsRN2xTyWv89CcgP1n60eTabUJawr2a4xTL',
-  corpId: 'wxf01fb15a9cbdef24'
-};
+// var wechatconfig = {
+//   token: 'sdabjoa',
+//   encodingAESKey: 'dX7eoxCZxsRN2xTyWv89CcgP1n60eTabUJawr2a4xTL',
+//   corpId: 'wxf01fb15a9cbdef24'
+// };
 
 
 //setup the web server
@@ -72,10 +72,10 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 
 //威信设置//通过认证
-app.use('/corp', wechat(wechatconfig, function (req, res, next) {
-  res.writeHead(200);
-  res.end('hello node api');
-}));
+// app.use('/corp', wechat(wechatconfig, function (req, res, next) {
+//   res.writeHead(200);
+//   res.end('hello node api');
+// }));
 
 //middleware
 //app.use(multer({ dest:'/public/uploads'}));
@@ -140,113 +140,3 @@ app.server.listen(app.config.port, function(){
   //and... we're live
   console.log('Server is running on port ' + config.port);
 });
-//定时管理
-// var rule = new schedule.RecurrenceRule();
-// rule.minute = 0;
-// var j = schedule.scheduleJob(rule, function(){
-//   console.log("执行任务");
-//   var toreboot ={
-//       "touser":"012358"
-//   };
-//   var message =   {
-//   "msgtype": "news",
-//   "news": {
-//     "articles":[
-//       {
-//         "title": "服务器微信功能正常",
-//         "description": "服务器微信功能正常",
-//         "url": "http://sdabj.com",
-//         "picurl": "http://sdabj.com/media/timg.jpg",
-//       }
-//     ]
-//   },
-//   "safe":"0"
-//   };
-//   var call = function(){
-//     console.log("test")
-//   };
-//   //api.send(toreboot, message,call);
-// });
-
-// var toreboot ={
-//     "touser":"012358"
-// };
-// var message =   {
-//  "msgtype": "news",
-//  "news": {
-//    "articles":[
-//      {
-//        "title": "服务器重启",
-//        "description": "server running on sdabj.com:80",
-//        "url": "http://sdabj.com",
-//        "picurl": "http://sdabj.com/media/timg.jpg",
-//      }
-//    ]
-//  },
-//  "safe":"0"
-// };
-// var call = function(){
-//   console.log("test")
-// };
-// api.send(toreboot, message,call);
-// var menu = {
-//    "button":[
-//        {
-//            "name":"阅签",
-//            "sub_button":[
-//                {
-//                    "type":"view",
-//                    "name":"所有阅签",
-//                    "url":"http://sdabj.com/account/article/"
-//                },
-//                {
-//                    "type":"view",
-//                    "name":"未读阅签",
-//                    "url":"http://sdabj.com/account/article/unread/"
-//                }
-//            ]
-//       },
-//        {
-//            "name":"请假",
-//            "sub_button":[
-//                {
-//                    "type":"view",
-//                    "name":"申请休假",
-//                    "url":"http://sdabj.com/account/leave/"
-//                },
-//                {
-//                    "type":"view",
-//                    "name":"申请替班",
-//                    "url":"http://sdabj.com/account/agree/"
-//                },
-//                {
-//                    "type":"view",
-//                    "name":"申请换班",
-//                    "url":"http://sdabj.com/account/allLeaves/"
-//                },
-//                {
-//                    "type":"view",
-//                    "name":"我的请假",
-//                    "url":"http://sdabj.com/account/leave/"
-//                },
-//                {
-//                    "type":"view",
-//                    "name":"领导审批",
-//                    "url":"http://sdabj.com/account/agree/"
-//                }
-//            ]
-//       },
-//        {
-//            "type":"view",
-//             "name":"飞机状况",
-//             "url":"http://sdabj.com/airplane/"
-//       }
-//    ]
-// };
-// var callback = function(err,result){
-//         if(err){console.log(err);}
-//         console.log(result);
-// }
-// api.createMenu(menu, callback);
-
-

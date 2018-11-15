@@ -1,0 +1,33 @@
+extends ../../../../layouts/wechat
+
+block head
+    title 所有#{type}列表
+
+block body
+    div.weui-tab
+        div.weui-panel 
+            div.weui-panel__hd 所有#{type}列表
+                each noti,i in data
+                    a.weui-media-box.weui-media-box_appmsg(href="/account/noti/detail/#{noti._id}")
+                        div.weui-media-box__bd
+                            h4.weui-media-box__title #{noti.title}
+                                if noti.isImportant
+                                    span.weui-badge(style="margin-left: 5px;") 重要
+                            p.weui-media-box__desc #{noti.general}
+                            ul.weui-media-box__info
+                                li.weui-media-box__info__meta #{noti.type}
+                                li.weui-media-box__info__meta #{noti.creator}
+                                li.weui-media-box__info__meta 截止：#{noti.timeFinished}
+        div.weui-tabbar
+            a.weui-tabbar__item.weui-bar__item_on(href="/account/")
+                img.weui-tabbar__icon(src="/dist/weui/dist/example/images/icon_nav_panel.png" alt="" )
+                p.weui-tabbar__label 主页
+            a.weui-tabbar__item(href="/account/noti/")
+                img.weui-tabbar__icon(src="/dist/weui/dist/example/images/icon_nav_button.png" alt="" )
+                p.weui-tabbar__label 当前通告
+            a.weui-tabbar__item(href="/account/yue/")
+                img.weui-tabbar__icon(src="/dist/weui/dist/example/images/icon_nav_toast.png" alt="" )
+                p.weui-tabbar__label 待阅阅签
+            a.weui-tabbar__item(href="/account/setting/")
+                img.weui-tabbar__icon(src="/dist/weui/dist/example/images/icon_nav_nav.png" alt="" )
+                p.weui-tabbar__label 我的

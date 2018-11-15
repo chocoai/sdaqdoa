@@ -49,7 +49,7 @@ $.get("http://47.90.4.9:8887/api/jsapi-oauth", function(data){
     });
 
     dd.error(function(err) {
-        $('p#err').html(JSON.stringify(err));
+        $('p').html(JSON.stringify(err));
     });
 
 });

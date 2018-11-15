@@ -29,7 +29,7 @@ exports.login = function(req, res){
   var workflow = req.app.utility.workflow(req, res);
 
   workflow.on('validate', function() {
-    req.body.username = req.body.username +"@sdaoa.com"
+    req.body.username = req.body.username
     if (!req.body.username) {
       workflow.outcome.errfor.username = 'required';
     }

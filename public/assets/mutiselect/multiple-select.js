@@ -722,10 +722,10 @@
         multiple: false,
         multipleWidth: 80,
         single: false,
-        filter: false,
+        filter: true,
         width: undefined,
         dropWidth: undefined,
-        maxHeight: 250,
+        maxHeight: 500,
         container: null,
         position: 'bottom',
         keepOpen: false,
@@ -736,10 +736,10 @@
         filterAcceptOnEnter: false,
         hideOptgroupCheckboxes: false,
 
-        selectAllText: 'Select all',
-        allSelected: 'All selected',
-        countSelected: '# of % selected',
-        noMatchesFound: 'No matches found',
+        selectAllText: '选择所有',
+        allSelected: '选择所有人员',
+        countSelected: '已选# 个分队共 % 人',
+        noMatchesFound: '无匹配',
 
         styler: function () {
             return false;

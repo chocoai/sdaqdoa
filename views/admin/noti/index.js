@@ -54,7 +54,7 @@ exports.detail = function(req, res, next){
         }
       });
       //console.log(teams);
-      //console.log(result);
+      console.log(result);
       res.render('admin/noti/detail', { noti:result,teams:teams});
     }
   });
@@ -86,6 +86,64 @@ exports.record = function(req, res, next){
   });
 };
 
+exports.commentbyreaders = function(req, res, next){
+  var workflow = req.app.utility.workflow(req, res);
+  var commentsByReaders = [];
+  console.log(req.user);
+  var defaultUser = {
+    name:{
+      first:"匿名"
+    }
+  }
+  
+  workflow.on('validate', function() {
+
+    workflow.emit('addComment');
+  });
+
+    workflow.on('addComment', function() {
+    if(req.body.comment == ""){req.body.comment = "评论为空"}
+    req.app.db.models.Noti.findById(req.params.id).exec(function(err, result) {
+      if (err) {
+        return next(err);
+      }
+
+      if (req.xhr) {
+        res.send(noti);
+      }
+      else {
+        commentsByReaders = result.commentsByReaders;
+        var commentTime = new Date();
+        console.log(req.user);
+          if (req.user && req.body.comment ) {
+            commentsByReaders.push({
+              cBody:req.body.comment,
+              cName:req.user.name,
+              cTime:commentTime.getFullYear()+"年"+(commentTime.getMonth()+1)+"月"+commentTime.getDate()+"日"+commentTime.getHours()+":"+commentTime.getMinutes()+":"+commentTime.getSeconds()
+            });
+            var fieldsToSet = {
+              commentsByReaders:commentsByReaders
+            }
+            
+            req.app.db.models.Noti.findByIdAndUpdate(req.params.id, fieldsToSet, function(err, measurement) {
+              if (err) {
+                return workflow.emit('exception', err);
+              }
+
+              workflow.outcome.record = measurement;
+              req.flash('success', '增加备注评论成功！');
+              res.location('/admin/noti/detail/'+ req.params.id);
+              res.redirect('/admin/noti/detail/'+ req.params.id);
+            });
+          }
+
+      }
+    });
+  });
+
+  workflow.emit('validate');
+};
+
 exports.comment = function(req, res, next){
   var workflow = req.app.utility.workflow(req, res);
   var comments = [];
@@ -114,15 +172,11 @@ exports.comment = function(req, res, next){
       else {
         comments = result.comments;
         var commentTime = new Date();
-        req.app.db.models.Account.findOne({ "phone": req.user.username }, function(err, user) {
-          if (err) {
-            console.log(err);
-          }
-
-          if (user) {
+        console.log(req.user);
+          if (req.user && req.body.comment ) {
             comments.push({
               cBody:req.body.comment,
-              cName:user.name.first,
+              cName:req.user.name,
               cTime:commentTime.getFullYear()+"年"+(commentTime.getMonth()+1)+"月"+commentTime.getDate()+"日"+commentTime.getHours()+":"+commentTime.getMinutes()+":"+commentTime.getSeconds()
             });
             var fieldsToSet = {
@@ -135,12 +189,12 @@ exports.comment = function(req, res, next){
               }
 
               workflow.outcome.record = measurement;
-              req.flash('success', '评论成功！');
+              req.flash('success', '增加备注评论成功！');
               res.location('/admin/noti/detail/'+ req.params.id);
               res.redirect('/admin/noti/detail/'+ req.params.id);
             });
           }
-        }); 
+
       }
     });
   });

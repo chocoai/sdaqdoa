@@ -1,6 +1,7 @@
 'use strict';
 
 exports.port = process.env.PORT || 8088;
+exports.webLink = "http://sdaoa.com:8088"
 exports.mongodb = {
   uri: process.env.MONGOLAB_URI || process.env.MONGOHQ_URL || 'mongodb://localhost:27017/sdaqdoa'
 };

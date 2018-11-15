@@ -24,13 +24,14 @@ html
           ul.nav.navbar-nav
             li.dropdown
               a.dropdown-toggle(href='#', data-toggle='dropdown')
-                | 系统&nbsp;
+                | 系统设置&nbsp;
                 span.caret
               ul.dropdown-menu
                 li.dropdown-header 系统运行设置
                 li: a(href='/admin/statuses/') 状态
                 li: a(href='/admin/categories/') 分类
                 li: a(href='/admin/dingtalk/') 钉钉同步
+                li: a(href='/admin/ding') 钉钉通知
                 li.divider
                 li.dropdown-header 用户管理
                 li: a(href='/admin/users/') 帐号
@@ -90,5 +91,7 @@ html
       script(src='/layouts/ie-sucks.min.js?#{cacheBreaker}')
     script(src='/layouts/core.min.js?#{cacheBreaker}')
     script(src='/layouts/admin.min.js?#{cacheBreaker}')
+    script(type="text/javascript" charset="utf8" src="/assets/dataTable/jquery.dataTables.js")
+    script(src='/assets/dataTable/table.js')
 
     block feet

@@ -18,7 +18,7 @@ exports.noti = function(req, res, next){
                 usernames += reader.id + ",";
             });
             console.log("拼接后的用户"+usernames);
-            Ding.ding(usernames,result.general,"http://sdaoa.com:3333");
+            Ding.ding(usernames,result.general,"http://sdaoa.com:3333/account/noti/detail/"+req.params.id);
         }
       });
     res.redirect('/admin/noti/manage/');

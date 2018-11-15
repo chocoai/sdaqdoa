@@ -7,7 +7,7 @@ exports = module.exports = function(app, mongoose) {
     dingtalk_id:{ type: String},//与username相同
     password: String,
     source:{ type: String},//dingding/admin
-    email: { type: String},
+    email: { type: String,unique: true },
     department_id:{ type: String},
     department_name:{ type: String},
     avatar:{ type: String},

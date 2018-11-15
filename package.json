@@ -17,7 +17,7 @@
     "compression": "1.x.x",
     "connect-mongo": "1.x.x",
     "connect-flash": "",
-    "express-messages":"",
+    "express-messages": "",
     "cookie-parser": "1.x.x",
     "csurf": "1.x.x",
     "emailjs": "1.x.x",
@@ -38,9 +38,9 @@
     "passport-twitter": "1.x.x",
     "serve-static": "1.10.x",
     "underscore": "1.x.x",
-    "multer":"1.x.x",
-    "wechat-enterprise":"*",
-    "node-schedule":"1.x.x",
+    "multer": "1.x.x",
+    "wechat-enterprise": "*",
+    "node-schedule": "1.x.x",
     "request": "*"
   },
   "devDependencies": {

@@ -80,7 +80,8 @@ exports.getUsersList = function(callback){
                 res.on('end', () => {
                   try {
                     const departData = JSON.parse(rawData);
-                    console.log("得到部门信息～～～～～～～");
+
+                    console.log("得到部门信息～～～～～～～"+departData.department.length);
                     //console.log(departData.department);//得到departments
                     departData.department.forEach(function(depart,i,departments){
                         https.get(config.userListUrl+access_token+'&department_id='+depart.id, (res) => {
@@ -96,7 +97,9 @@ exports.getUsersList = function(callback){
                                 depart.users = UsersListData;
                                 //console.log(UsersListData);
                                 usersList.push(depart);
-                                if(numOfTeam == departments.length){
+                                if(usersList.length == departData.department.length){
+                                    console.log("压入数量"+usersList.length);
+                                    console.log("部门数量"+departData.department.length);
                                     usersList.sort(function(a,b){
                                         return a.parentid-b.parentid
                                     });

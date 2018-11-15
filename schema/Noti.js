@@ -5,19 +5,26 @@ exports = module.exports = function(app, mongoose) {
     title: { type: String, required: true},
     isImportant:{type:Boolean},
     general: { type: String},
+    type:{ type: String},
     creator: { type: String},
     body: { type: String},
     timeCreated: { type:String },
     timeFinished:{type: String },
     numOfReader: { type:Number},
     numOfFinished: {type:Number},
-    files:{type:String},
+    files:[{type:String}],
     comments: [{
         cName:{type:String},
         username:{type:String},
         cBody:{type:String},
         cTime:{ type: String}
     }],
+    commentsByReaders: [{
+      cName:{type:String},
+      username:{type:String},
+      cBody:{type:String},
+      cTime:{ type: String}
+  }],
     readers:[{
         name:{type:String},
         id:{type:String},

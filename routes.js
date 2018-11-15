@@ -95,8 +95,11 @@ exports = module.exports = function(app, passport) {
   //admin>dingtalk
   app.get('/admin/dingtalk/', require('./views/admin/dingtalk/index').init);
   app.post('/admin/dingtalk/sync/', require('./views/admin/dingtalk/index').sync);
+  app.post('/admin/dingtalk/checkandsync/', require('./views/admin/dingtalk/index').syncandcheck);
+  app.get('/admin/ding/', require('./views/admin/ding/index').init);
+  app.post('/admin/ding/sendMessage/', require('./views/admin/ding/index').send);
 
-    //admin > noti //通知功能
+  //admin > noti //通知功能
   app.get('/admin/noti/',require('./views/admin/noti/index').findall);
   app.get('/admin/noti/add/',require('./views/admin/noti/add').add);
   app.post('/admin/noti/add/',upload.single('avatar'),require('./views/admin/noti/add').create);
@@ -104,7 +107,15 @@ exports = module.exports = function(app, passport) {
   app.get('/admin/noti/detail/:id',require('./views/admin/noti/index').detail);
   app.post('/admin/noti/detail/comment/:id/', require('./views/admin/noti/index').comment);
   app.post('/admin/noti/ding/:id/',require('./views/admin/noti/ding').noti);
+  app.post('/admin/noti/delete/:id/',require('./views/admin/noti/manage').delete);
+  app.get('/admin/noti/edit/:id/',require('./views/admin/noti/edit').editinit);//编辑
+  app.post('/admin/noti/edit/:id/',require('./views/admin/noti/edit').save);
+  app.post('/admin/noti/detail/commentbyreaders/:id/', require('./views/admin/noti/index').commentbyreaders);
 
+  //upload
+  app.get('/admin/upload/', require('./views/admin/upload/index').index);
+  app.post('/admin/upload', require('./views/admin/upload/index').uploader);
+  app.get('/uploads/:id',require('./views/admin/upload/index').download);//下载文件
 
   //admin > users
   app.get('/admin/users/', require('./views/admin/users/index').find);

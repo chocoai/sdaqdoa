@@ -32,3 +32,6 @@ ul.success li{
 @media print {
  .no-print{display:none;}
 }
+span.marker{
+    background-color: #33ff00;
+}

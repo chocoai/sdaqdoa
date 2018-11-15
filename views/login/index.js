@@ -29,6 +29,7 @@ exports.login = function(req, res){
   var workflow = req.app.utility.workflow(req, res);
 
   workflow.on('validate', function() {
+    req.body.username = req.body.username +"@sdaoa.com"
     if (!req.body.username) {
       workflow.outcome.errfor.username = 'required';
     }
@@ -101,7 +102,7 @@ exports.login = function(req, res){
           return workflow.emit('response');
         });
       }else {
-        //console.log(user);
+        console.log(user);
         req.login(user, function(err) {
           if (err) {
             return workflow.emit('exception', err);

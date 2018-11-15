@@ -23,8 +23,9 @@ $("#selectNormal").click(function () {
     });   
 });
 
- $("select").multipleSelect({
+ $("select#persons").multipleSelect({
             multiple: true,
             multipleWidth: 80,
             width: '100%'
         });
+

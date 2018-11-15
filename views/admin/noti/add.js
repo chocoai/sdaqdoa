@@ -57,7 +57,7 @@ exports.add = function(req, res, next){
 
 exports.create = function(req, res, next){
     console.log("创建一个新通知");
-    console.log(req.files);
+    //console.log(req.files);
     var workflow = req.app.utility.workflow(req, res);
 
   workflow.on('validate', function() {
@@ -78,15 +78,19 @@ exports.create = function(req, res, next){
       reader.team = person.split('/')[2];
       readers.push(reader);
     });
+    var file_names = (req.body.Files.split('\r\n'));
+    file_names = file_names.slice(0,file_names.length-1);
+    console.log(file_names);
     console.log(req.body);
     var fieldsToSet = {
       title: req.body.title,
+      type:req.body.type,
       general:req.body.general,
       creator:req.body.creator,
       body:req.body.body,
       timeCreated:timeCreate.getFullYear()+"年"+(timeCreate.getMonth()+1)+"月"+timeCreate.getDate()+"日"+timeCreate.getHours()+":"+timeCreate.getMinutes()+":"+timeCreate.getSeconds(),
       readers:readers,
-      files:req.body.Files,
+      files:file_names,
       isImportant:req.body.isImportant,
       timeFinished:req.body.timeFinished,
       search: [

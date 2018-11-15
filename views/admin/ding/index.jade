@@ -1,0 +1,27 @@
+extends ../../../layouts/admin
+
+block head
+  title 钉钉通知
+
+block body
+    div.row
+        form(method='post', action='/admin/ding/sendMessage/',)
+            div.col-sm-8
+                div.page-header
+                    h1 钉钉通知
+                div.form-group
+                    label 内容：（必填）
+                    input.form-control(type='text', name='text' placeholder="文本内容" required="required")
+                div.form-group
+                    label 通知以下人员（必填）(需多于一人，否则无效)
+                    select(multiple="multiple" required="required" name="toPersons" id="persons")
+                        each userList in userLists
+                            optgroup(label="#{userList.team}")
+                                each user in userList.userList
+                                    option(value="#{user.username}/#{user.name}/#{userList.team}") #{user.name}
+                div.form-group
+                    button.btn.btn-success.btn-signup.btn-block(type='submit') 发送通知
+
+    script(src='/assets/js/vendor/jquery.min.js')
+    script(src='/assets/mutiselect/multiple-select.js')
+    script(src='/assets/js/checkboxSelect.js')

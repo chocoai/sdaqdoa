@@ -1,0 +1,19 @@
+extends ../../../layouts/account
+
+block head
+  title 上传文件
+
+block body
+  div.row
+    div.col-sm-8
+        div.page-header
+            h1 上传文件
+            form(action="/admin/upload" method="POST" enctype="multipart/form-data")
+                div
+                    div.form-group
+                        span 文件:
+                        input.form-control-file(name="myFile" type="file")
+                button.btn(type="submit") 上传
+            if file
+                p #{file.originalname}
+                a(href="/uploads/#{file.filename}") #{file.originalname}

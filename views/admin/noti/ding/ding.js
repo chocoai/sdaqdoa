@@ -126,7 +126,7 @@ exports.getUsersList = function(callback){
         });
 }
 
-exports.ding = function(username,text,url){
+exports.ding1 = function(username,text,url){
 
     http.get(config.tokenUrl, (res) => {
         // Do stuff with response
@@ -148,23 +148,26 @@ exports.ding = function(username,text,url){
                         'charset': 'utf-8',
                         'Content-Type': 'application/x-www-form-urlencoded'
                     },
+                    
                     formData:
                     { 
-                        //msg: config.msg,
-                        msg:{"msgtype": "text","text": {"content": "哎哟，df/内容pp相同还不给推送了"}},
+                        msg: config.msg,
+                        //msg:{"msgtype": "text","text": {"content": "哎哟，相同还不给推送了"}},
                         access_token: parsedData.access_token,
                         agent_id: config.agent_id,
                         userid_list: username
                     } 
                 };
+                var request = require('request');
                 console.log(options);
+
                 request(options, function (error, response, body) {
                     console.log("有错误");
                     if (error) throw new Error(error);
                     console.log("2"+body);
                 });
             } catch (e) {
-                console.log("3"+e.message);
+                console.log("try catch一个错误："+e.message);
             }
         });
     }).on('error', (e) => {
@@ -172,4 +175,50 @@ exports.ding = function(username,text,url){
     });
    
     
+}
+
+exports.ding = function(username,text,url){
+    console.log("start");
+    http.get(config.tokenUrl, (res) => {//10.24.186.104:8887
+        // Do stuff with response
+        res.setEncoding('utf8');
+        let rawData = '';
+        res.on('data', (chunk) => rawData += chunk);
+        res.on('end', () => {
+          try {
+            const parsedData = JSON.parse(rawData);
+            console.log(parsedData.access_token);//得到accesstoken
+            //sendMessageUrl = "https://oapi.dingtalk.com/message/send?access_token="+parsedData.access_token;
+            var request = require("request");
+
+            var options = {
+                method: 'POST',
+                url: 'https://oapi.dingtalk.com/topapi/message/corpconversation/asyncsend_v2',
+                headers: 
+                { 
+                    'charset': 'utf-8',
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                },
+                formData:
+                { 
+                    msg: '{"msgtype": "link","link": {"messageUrl":"http://sdaoa.com:8088/account/noti/","picUrl":"http://sdabj.com:8088/media/timg.jpg","title":"OA通知提醒","text": "' +text +'"}}',
+                    access_token: parsedData.access_token,
+                    agent_id: '202966773',
+                    userid_list: username
+                } 
+            };
+            console.log(options);
+            request(options, function (error, response, body) {
+            if (error) throw new Error(error);
+
+                console.log(body);
+            });
+            
+          } catch (e) {
+            console.log(e.message);
+          }
+        });
+      }).on('error', (e) => {
+        console.log(`Got error: ${e.message}`);
+      });    
 }

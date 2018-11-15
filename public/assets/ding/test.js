@@ -33,7 +33,7 @@ $.get("http://47.90.4.9:8887/api/jsapi-oauth", function(data){
     dd.config(ddConfig);
 
     dd.ready(function(){
-        $('h1').html("success");
+        $('h1').html("已成功登录！");
         dd.biz.user.get({
             // 可选参数，如果不传则使用用户当前企业的corpId。
             onSuccess: function (info) {
@@ -41,7 +41,10 @@ $.get("http://47.90.4.9:8887/api/jsapi-oauth", function(data){
                 $('p#err').append("<img src='"+info.avatar+"'width='200px'/>");
                 $('p#err').append("<h2>"+info.orgUserName+"</h2>");
                 $('p#err').append("<h2>"+info.emplId+"</h2>");
-                $.post( "/login/", { username: info.emplId, password: "123456" } );
+                $.post( "/login/", { username: info.emplId, password: "123456" } )
+                .done(function(){
+
+                });
             },
             onFail: function (err) {
                 $('p#err').html(JSON.stringify(err));

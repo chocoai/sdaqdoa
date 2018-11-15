@@ -13,7 +13,7 @@ exports.findall = function(req, res, next){
 
   req.app.db.models.Noti.pagedFind({
     filters: filters,
-    keys: 'title general creator isImportant timeFinished',
+    keys: 'title general creator isImportant timeFinished type',
     limit: req.query.limit,
     page: req.query.page,
     sort: req.query.sort
@@ -60,35 +60,11 @@ exports.detail = function(req, res, next){
   });
 };
 
-exports.record = function(req, res, next){
-  var isGotIt = "noNeed";
-  req.app.db.models.Noti.findById(req.params.id).exec(function(err, result) {
-    if (err) {
-      return next(err);
-    }
-    if (req.xhr) {
-      res.send(noti);
-    }
-    else {
-      var readers = result.readers;
-      readers.forEach(function(item,index){
-        if(item.username == req.user.username){
-          isGotIt = "need";
-          if(item.isFinished == true){
-            isGotIt = "gotIt";
-            console.log("gotIt");
-          }
-        };
-      });
-      console.log(result);
-      res.render('account/noti/record', { noti:result,gotBtn:isGotIt});
-    }
-  });
-};
 
-exports.comment = function(req, res, next){
+exports.comment= function(req, res, next){
   var workflow = req.app.utility.workflow(req, res);
-  var comments = [];
+  var commentsByReaders = [];
+  console.log(req.user);
   var defaultUser = {
     name:{
       first:"匿名"
@@ -111,21 +87,18 @@ exports.comment = function(req, res, next){
         res.send(noti);
       }
       else {
-        comments = result.comments;
+        commentsByReaders = result.commentsByReaders;
         var commentTime = new Date();
-        req.app.db.models.Account.findOne({ "phone": req.user.username }, function(err, user) {
-          if (err) {
-            console.log(err);
-          }
-
-          if (user) {
-            comments.push({
+        console.log(req.user);
+          if (req.user && req.body.comment ) {
+            commentsByReaders.push({
               cBody:req.body.comment,
-              cName:user.name.first,
+              cName:req.user.name,
+              cAvatar:req.user.avatar,
               cTime:commentTime.getFullYear()+"年"+(commentTime.getMonth()+1)+"月"+commentTime.getDate()+"日"+commentTime.getHours()+":"+commentTime.getMinutes()+":"+commentTime.getSeconds()
             });
             var fieldsToSet = {
-              comments:comments
+              commentsByReaders:commentsByReaders
             }
             
             req.app.db.models.Noti.findByIdAndUpdate(req.params.id, fieldsToSet, function(err, measurement) {
@@ -134,12 +107,12 @@ exports.comment = function(req, res, next){
               }
 
               workflow.outcome.record = measurement;
-              req.flash('success', '评论成功！');
+              req.flash('success', '增加备注评论成功！');
               res.location('/account/noti/detail/'+ req.params.id);
               res.redirect('/account/noti/detail/'+ req.params.id);
             });
           }
-        }); 
+
       }
     });
   });

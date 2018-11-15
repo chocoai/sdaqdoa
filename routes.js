@@ -232,9 +232,6 @@ exports = module.exports = function(app, passport) {
   app.post('/account/leave/detail/WechatIt/:id/',require('./views/account/wechat/sendMessage').sendMessage);//驳回申请单
   //accoutn》noti
   app.get('/account/noti/',require('./views/account/noti/index').findall);
-  app.get('/account/noti/add/',require('./views/account/noti/add').add);
-  app.post('/account/noti/add/',upload.single('avatar'),require('./views/account/noti/add').create);
-  app.get('/account/noti/manage/',require('./views/account/noti/manage').findall);
   app.get('/account/noti/detail/:id',require('./views/account/noti/index').detail);
   app.post('/account/noti/detail/comment/:id/', require('./views/account/noti/index').comment);
   //account>noti>api

@@ -17,13 +17,15 @@ exports = module.exports = function(app, mongoose) {
         cName:{type:String},
         username:{type:String},
         cBody:{type:String},
-        cTime:{ type: String}
+        cTime:{ type: String},
+        cAvatar:{ type: String}
     }],
     commentsByReaders: [{
       cName:{type:String},
       username:{type:String},
       cBody:{type:String},
-      cTime:{ type: String}
+      cTime:{ type: String},
+      cAvatar:{ type: String}
   }],
     readers:[{
         name:{type:String},

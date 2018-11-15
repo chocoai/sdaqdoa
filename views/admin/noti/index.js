@@ -119,6 +119,7 @@ exports.commentbyreaders = function(req, res, next){
             commentsByReaders.push({
               cBody:req.body.comment,
               cName:req.user.name,
+              cAvatar:req.user.avatar,
               cTime:commentTime.getFullYear()+"年"+(commentTime.getMonth()+1)+"月"+commentTime.getDate()+"日"+commentTime.getHours()+":"+commentTime.getMinutes()+":"+commentTime.getSeconds()
             });
             var fieldsToSet = {
@@ -177,6 +178,7 @@ exports.comment = function(req, res, next){
             comments.push({
               cBody:req.body.comment,
               cName:req.user.name,
+              cAvatar:req.user.avatar,
               cTime:commentTime.getFullYear()+"年"+(commentTime.getMonth()+1)+"月"+commentTime.getDate()+"日"+commentTime.getHours()+":"+commentTime.getMinutes()+":"+commentTime.getSeconds()
             });
             var fieldsToSet = {

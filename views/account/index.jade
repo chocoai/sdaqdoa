@@ -1,49 +1,47 @@
-extends ../../layouts/account
+extends ../../layouts/wechat
 
 block head
-  title 个人主页
-
-block neck
-  link(rel='stylesheet', href='/views/account/index.min.css?#{cacheBreaker}')
-
-block feet
-  script(src='/views/account/index.min.js?#{cacheBreaker}')
+    title 我的OA主页
 
 block body
-  div.row
-    div.col-sm-6
-      div.page-header
-        h1 我的帐号
-      div.row
-        div.col-sm-4
-          div.well.stat
-            a.button(href="/account/article/") 
-              i.fa.fa-pencil-square
-              |  所有阅签
-        div.col-sm-4
-          div.well.stat
-            a.button(href="/account/article/unread/") 
-              i.fa.fa-bell
-              |  未读阅签
-        div.col-sm-4
-          div.well.stat
-            a.button(href="/account/leave/") 
-              i.fa.fa-bars
-              |  请假条
-      div.row
-        div.col-sm-4
-          div.well.stat
-            div.stat-value.day-of-year --
-            div.stat-label 今年天数
-        div.col-sm-4
-          div.well.stat
-            div.stat-value.week-of-year --
-            div.stat-label 今年周数
-        div.col-sm-4
-          div.well.stat
-            div.stat-value.day-of-week --
-            div.stat-label 星期
-    div.col-sm-6.special
-      div.page-header
-        h1 个人面板
-      i.fa.fa-dashboard.super-awesome
+    div.weui-tab
+        div.weui-tab_panel
+            div.page__hd
+                h1.page__title OA主页
+                p.page__desc SDA青岛维修基地
+            div.weui-grids
+                //- a.weui-grid(href="./PF/")
+                //-     div.weui-grid__icon
+                //-         img(src="/dist/weui/dist/example/images/PF.png", alt="")
+                //-         p.weui-grid__label 航前
+                a.weui-grid(href="./noti/noti/")
+                    div.weui-grid__icon
+                        img(src="/dist/weui/dist/example/images/icon_nav_dialog.png", alt="")
+                        p.weui-grid__label 通知
+                a.weui-grid(href="./noti/safe/")
+                    div.weui-grid__icon
+                        img(src="/dist/weui/dist/example/images/icon_nav_article.png", alt="")
+                        p.weui-grid__label  质量
+                a.weui-grid(href="./noti/teach/")
+                    div.weui-grid__icon
+                        img(src="/dist/weui/dist/example/images/icon_nav_panel.png", alt="")
+                        p.weui-grid__label 技术
+                a.weui-grid(href="./yue/")
+                    div.weui-grid__icon
+                        img(src="/dist/weui/dist/example/images/icon_nav_toast.png", alt="")
+                        p.weui-grid__label 阅签
+            div(style="display:none") page2
+            div(style="display:none") page3
+        div.weui-tabbar
+            a.weui-tabbar__item.weui-bar__item_on(href="/account/")
+                img.weui-tabbar__icon(src="/dist/weui/dist/example/images/icon_nav_panel.png" alt="" )
+                p.weui-tabbar__label 主页
+            a.weui-tabbar__item(href="/account/noti/")
+                img.weui-tabbar__icon(src="/dist/weui/dist/example/images/icon_nav_button.png" alt="" )
+                p.weui-tabbar__label 当前通告
+            a.weui-tabbar__item(href="/account/yue/")
+                img.weui-tabbar__icon(src="/dist/weui/dist/example/images/icon_nav_toast.png" alt="" )
+                p.weui-tabbar__label 待阅阅签
+            a.weui-tabbar__item(href="/account/setting/")
+                img.weui-tabbar__icon(src="/dist/weui/dist/example/images/icon_nav_nav.png" alt="" )
+                p.weui-tabbar__label 我的

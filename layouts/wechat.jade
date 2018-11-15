@@ -1,0 +1,33 @@
+doctype html
+html
+  head
+    block head
+      title #{title}
+    meta(name='viewport', content='width=device-width, initial-scale=1.0,user-scalable=0')
+    //-link(rel='stylesheet', href='/layouts/core.min.css?#{cacheBreaker}')
+    //-link(rel='stylesheet', href='/layouts/style.css?#{cacheBreaker}')
+
+    link(rel='stylesheet', href='/dist/weui/dist/style/weui.min.css')
+    link(rel='stylesheet', href='/dist/weui/dist/example/example.css')
+    link(rel='stylesheet', href='/dist/index.css')
+    script(src='/vendor/jquery/jquery.js')
+    script(src='https://res.wx.qq.com/open/libs/weuijs/1.0.0/weui.min.js')
+    //- link(rel='stylesheet', href='/assets/mutiselect/multiple-select.css')
+    block neck
+  body
+
+    block body
+
+    //div.ajax-spinner
+    //img(src='/media/ajax-pulse.gif', alt='Loading')
+
+    //if lte IE 9
+    //  script(src='/layouts/ie-sucks.min.js?#{cacheBreaker}')
+    //script(src='/layouts/core.min.js?#{cacheBreaker}')
+    script(src='/dist/weui/dist/example/zepto.min.js')
+    script(src='https://res.wx.qq.com/open/js/jweixin-1.0.0.js')
+    //script(src='https://res.wx.qq.com/open/libs/weuijs/1.0.0/weui.min.js')
+    script(src='/vendor/jquery/jquery.js')
+    script(type="text/javascript" charset="utf8" src="/assets/dataTable/jquery.dataTables.js")
+    script(src='/assets/dataTable/table.js')
+    block feet

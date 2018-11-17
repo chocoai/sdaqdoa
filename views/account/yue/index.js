@@ -41,6 +41,8 @@ exports.findall = function(req, res, next){
 
 
 exports.detail = function(req, res, next){
+  var need = false;
+  var gotit = true;
   req.app.db.models.Yue.findById(req.params.id).exec(function(err, result) {
     if (err) {
       return next(err);
@@ -58,8 +60,16 @@ exports.detail = function(req, res, next){
         }
       });
       //console.log(teams);
-      //console.log(result);
-      res.render('account/yue/detail', { yue:result,teams:teams});
+      //console.log(result.readers);
+      if(result.readers.findIndex(function(element,index,array){return element.id == req.user.username;}) != -1){
+        need =true;
+        var reader = result.readers.find(function(element,index,array){return element.id == req.user.username;});
+        //console.log(reader);
+        if(!reader.isFinished){
+          gotit = false;
+        }
+      }
+      res.render('account/yue/detail', { yue:result,teams:teams,need:need,gotit:gotit});
     }
   });
 };
@@ -115,6 +125,65 @@ exports.comment= function(req, res, next){
               res.redirect('/account/yue/detail/'+ req.params.id);
             });
           }
+
+      }
+    });
+  });
+
+  workflow.emit('validate');
+};
+
+exports.gotit= function(req, res, next){
+  var workflow = req.app.utility.workflow(req, res);
+  var readers = [];
+  //console.log(req.user);
+  
+  workflow.on('validate', function() {
+
+    workflow.emit('gotit');
+  });
+
+    workflow.on('gotit', function() {
+    if(req.body.comment == ""){req.body.comment = "已阅"}
+    req.app.db.models.Yue.findById(req.params.id).exec(function(err, result) {
+      if (err) {
+        return next(err);
+      }
+
+      if (req.xhr) {
+        res.send(yue);
+      }
+      else {
+        readers = result.readers;
+        console.log(readers);
+        var commentTime = new Date();
+        console.log(req.user);
+        var req_user = readers.findIndex(function(element,index,array){return element.id == req.user.username;});
+        console.log(readers[req_user]);
+        readers[req_user].isFinished = true;
+        readers[req_user].fb = req.body.comment;
+        var fieldsToSet = {
+          readers:readers
+        }
+        req.app.db.models.Yue.findByIdAndUpdate(req.params.id, fieldsToSet, function(err, measurement) {
+          if (err) {
+            return workflow.emit('exception', err);
+          }
+
+        workflow.outcome.record = measurement;
+          // if (req.user && req.body.gotit ) {
+          //   readers.push({
+          //     cBody:req.body.gotit,
+          //     cName:req.user.name,
+          //     cAvatar:req.user.avatar,
+          //     cTime:commentTime.getFullYear()+"年"+(commentTime.getMonth()+1)+"月"+commentTime.getDate()+"日"+commentTime.getHours()+":"+commentTime.getMinutes()+":"+commentTime.getSeconds()
+          //   });
+
+            
+               res.location('/account/yue/detail/'+ req.params.id);
+               res.redirect('/account/yue/detail/'+ req.params.id);
+            });
+          // }
 
       }
     });

@@ -248,7 +248,7 @@ exports = module.exports = function(app, passport) {
   app.get('/account/yue/',require('./views/account/yue/index').findall);
   app.get('/account/yue/detail/:id',require('./views/account/yue/index').detail);
   app.post('/account/yue/detail/comment/:id/', require('./views/account/yue/index').comment);
-  
+  app.post('/account/yue/detail/gotit/:id/', require('./views/account/yue/index').gotit);
   //account>noti>api
   app.get('/noti/api/',require('./views/account/noti/api/index').findall);
   app.get('/noti/detail/:id',require('./views/account/noti/api/index').detail);

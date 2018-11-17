@@ -12,6 +12,22 @@ block body
         article.weui-article !{yue.body}
         p.page__desc 附件： 
             a(href="http://sdabj.com:8088/uploads/#{yue.files}") #{yue.files}
+        div.weui-panel
+            div.weui-panel__hd 阅签反馈 
+            if need
+                if gotit
+                    div.weui-cell
+                        button.weui-btn.weui-btn_default.weui-btn_plain-disabled(disabled) 已阅签
+                else
+                    form(method='post', action='/account/yue/detail/gotit/#{yue._id}/')
+                        div.weui-cell
+                            div.weui-cell__bd
+                                textarea.weui-textarea(name="gotit", rows="1" placeholder="添加你的反馈：我已阅" required) 
+                        div.weui-cell
+                            button.weui-btn.weui-btn_warn(type='submit') 阅签
+                    
+            else
+                p.page__desc 无须阅签
         div.weui-panel 
             div.weui-panel__hd 评论区
                 each comment,i in yue.comments
@@ -37,14 +53,23 @@ block body
                     div.weui-cell__bd
                         textarea.weui-textarea(name="comment", rows="3" placeholder="添加你的评论" required) 
                 div.weui-cell
-                        button.weui-btn.weui-btn_primary(type='submit') 提交评论
-        div.weui-panel 通知以下人员
+                        button.weui-btn.weui-btn_plain-primary(type='submit') 提交评论
+        div.weui-panel 未完成人员
             each team in teams
                 div.weui-panel__hd #{team}
                     div
                         each reader in yue.readers
                             if(team == reader.team)
-                                a.weui-btn.weui-btn_mini.weui-btn_default #{reader.name}
+                                if reader.isFinished==false
+                                    a.weui-btn.weui-btn_mini.weui-btn_warn #{reader.name}
+        div.weui-panel 已阅签人员
+            each team in teams
+                div.weui-panel__hd #{team}
+                    div
+                        each reader in yue.readers
+                            if(team == reader.team)
+                                if reader.isFinished
+                                    a.weui-btn.weui-btn_mini.weui-btn_primary #{reader.name}
         div.weui-footer
             a.weui-footer__link(href="/account/") OA首页
             p.eui-footer__text Copyright © 2018 山东航空青岛维修基地
@@ -52,10 +77,10 @@ block body
             a.weui-tabbar__item(href="/account/")
                 img.weui-tabbar__icon(src="/dist/weui/dist/example/images/icon_nav_panel.png" alt="" )
                 p.weui-tabbar__label 主页
-            a.weui-tabbar__item.weui-bar__item_on(href="/account/noti/")
+            a.weui-tabbar__item(href="/account/noti/")
                 img.weui-tabbar__icon(src="/dist/weui/dist/example/images/icon_nav_button.png" alt="" )
                 p.weui-tabbar__label 当前通告
-            a.weui-tabbar__item(href="/account/yue/")
+            a.weui-tabbar__item.weui-bar__item_on(href="/account/yue/")
                 img.weui-tabbar__icon(src="/dist/weui/dist/example/images/icon_nav_toast.png" alt="" )
                 p.weui-tabbar__label 待阅阅签
             a.weui-tabbar__item(href="/account/setting/")

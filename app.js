@@ -90,7 +90,10 @@ app.use(session({
   resave: true,
   saveUninitialized: true,
   secret: config.cryptoKey,
-  store: new mongoStore({ url: config.mongodb.uri })
+  store: new mongoStore({ url: config.mongodb.uri }),
+  cookie : {
+    maxAge : 1000 * 60 * 60 * 24 * 365, // 设置 session 的有效时间，单位毫秒
+},
 }));
 //app.use(multer({ dest: '/uploads' }));
 //app.use(bodyParser({uploadDir:'/upload'}));

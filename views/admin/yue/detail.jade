@@ -79,11 +79,20 @@ block body
     div.col-sm-4
         div.page-header
             h2 通知以下人员：
+            
         div
+            div
+                span.col-sm-3 颜色：
+                span.col-sm-3.btn.btn-xs.btn-warning 未阅签
+                span.col-sm-3.btn.btn-xs.btn-success 已阅签
+                span.col-sm-3.btn.btn-xs.btn-danger 已过期
             each team in teams
                 div.col-sm-12
                     h4 #{team}
                     p
                         each reader in yue.readers
                             if(team == reader.team)
-                                span.col-sm-3 #{reader.name}
+                                if reader.isFinished
+                                    span.col-sm-3.btn.btn-xs.btn-success #{reader.name}
+                                else
+                                    span.col-sm-3.btn.btn-xs.btn-warning #{reader.name} 

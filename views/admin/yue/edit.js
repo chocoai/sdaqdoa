@@ -96,6 +96,7 @@ workflow.on('createArticle', function() {
     reader.id = person.split('/')[0];
     reader.name = person.split('/')[1];
     reader.team = person.split('/')[2];
+    reader.isFinished = false;
     readers.push(reader);
   });
   var file_names = (req.body.Files.split('\r\n'));

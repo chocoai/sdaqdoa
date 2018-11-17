@@ -32,7 +32,8 @@ exports = module.exports = function(app, mongoose) {
         id:{type:String},
         team:{type:String},
         isFinished:{type:Boolean},
-        fTime:{type:String}
+        fTime:{type:String},
+        fb:{type:String},
     }]
   });
   ArticleSchema.plugin(require('./plugins/pagedFind'));

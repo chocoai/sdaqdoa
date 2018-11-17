@@ -8,16 +8,21 @@ block body
         div.weui-panel 
             div.weui-panel__hd 当前阅签列表
                 each yue,i in data
-                    a.weui-media-box.weui-media-box_appmsg(href="/account/yue/detail/#{yue._id}")
-                        div.weui-media-box__bd
-                            h4.weui-media-box__title #{yue.title}
-                                if yue.isImportant
-                                    span.weui-badge(style="margin-left: 5px;") 重要
-                            p.weui-media-box__desc #{yue.general}
-                            ul.weui-media-box__info
-                                li.weui-media-box__info__meta #{yue.type}
-                                li.weui-media-box__info__meta #{yue.creator}
-                                li.weui-media-box__info__meta 截止：#{yue.timeFinished}
+                    if !yue.gotit
+                        a.weui-media-box.weui-media-box_appmsg(href="/account/yue/detail/#{yue._id}")
+                            div.weui-media-box__bd
+                                h4.weui-media-box__title 
+                                    
+                                    if !yue.gotit
+                                        span.weui-badge(style="margin-left: 5px;") 未完成 
+                                        span #{yue.title} 
+                                    if yue.isImportant
+                                        span.weui-badge(style="margin-left: 5px;") 重要 
+                                p.weui-media-box__desc #{yue.general}
+                                ul.weui-media-box__info
+                                    li.weui-media-box__info__meta #{yue.type}
+                                    li.weui-media-box__info__meta #{yue.creator}
+                                    li.weui-media-box__info__meta 截止：#{yue.timeFinished}
             weui-panel__hd 此处仅显示你未阅签的文件，历史记录请在主页中寻找
     div.weui-tabbar
         a.weui-tabbar__item(href="/account/")

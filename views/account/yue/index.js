@@ -35,7 +35,20 @@ exports.findmy = function(req, res, next){
     else {
       results.filters = req.query;
       var articles = results.data.reverse();
-      console.log();
+      console.log(articles);
+      articles.forEach(function(article,i,articles){
+        var need = false;
+        var gotit = true;
+        if(article.readers.findIndex(function(element,j,array){return element.id == req.user.username;}) != -1){
+          need = true;
+        }
+        var reader = article.readers.find(function(element,j,array){return element.id == req.user.username;});
+        if(reader.isFinished == false){
+          gotit = false;
+        }
+        articles[i].need = need;
+        articles[i].gotit = gotit;
+      });
       res.render('account/yue/index', { data: articles});
     }
   });

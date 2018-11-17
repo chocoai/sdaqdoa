@@ -1,12 +1,12 @@
 extends ../../../layouts/wechat
 
 block head
-    title 通知列表
+    title 阅签列表
 
 block body
     div.weui-tab
         div.weui-panel 
-            div.weui-panel__hd 当前通知列表
+            div.weui-panel__hd 当前阅签列表
                 each yue,i in data
                     a.weui-media-box.weui-media-box_appmsg(href="/account/yue/detail/#{yue._id}")
                         div.weui-media-box__bd
@@ -23,7 +23,7 @@ block body
         a.weui-tabbar__item(href="/account/")
             img.weui-tabbar__icon(src="/dist/weui/dist/example/images/icon_nav_panel.png" alt="" )
             p.weui-tabbar__label 主页
-        a.weui-tabbar__item(href="/account/yue/")
+        a.weui-tabbar__item(href="/account/noti/")
             img.weui-tabbar__icon(src="/dist/weui/dist/example/images/icon_nav_button.png" alt="" )
             p.weui-tabbar__label 当前通告
         a.weui-tabbar__item.weui-bar__item_on(href="/account/yue/")

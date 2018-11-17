@@ -10,9 +10,9 @@ block body
         p.page__desc 发布时间： #{yue.timeCreated}
         p.weui-cells__title 概述 #{yue.general}
         article.weui-article !{yue.body}
-        p.page__desc 附件： 
+        p 附件： 
             each file in yue.files
-                p
+                p.page__desc 
                     a(href="#{webLink}/uploads/#{file}") #{file} 
         div.weui-panel
             div.weui-panel__hd 阅签反馈 
@@ -42,9 +42,9 @@ block body
                 each comment,i in yue.commentsByReaders
                     a.weui-media-box.weui-media-box_appmsg
                         if(comment.cAvatar)
-                            img.weui-media-box__thumb(src="#{comment.cAvatar}" height="30px" style="width:30px;margin-right:5px;display:block")
+                            img.weui-media-box__thumb(src="#{comment.cAvatar}" height="40px" style="width:40px;margin-right:5px;display:block")
                         else
-                            img.weui-media-box__thumb(src="/media/none.png" height="30px" style="width:30px;margin-right:5px;display:block")
+                            img.weui-media-box__thumb(src="/media/none.png" height="40px" style="width:40px;margin-right:5px;display:block")
                         div.weui-media-box__bd
                             h4.weui-media-box__title #{comment.cBody}
                             ul.weui-media-box__info

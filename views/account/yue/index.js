@@ -35,6 +35,7 @@ exports.findmy = function(req, res, next){
     else {
       results.filters = req.query;
       var articles = results.data.reverse();
+      console.log();
       res.render('account/yue/index', { data: articles});
     }
   });

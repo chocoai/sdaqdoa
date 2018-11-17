@@ -6,7 +6,7 @@ block head
 block body
     div.weui-tab
         div.weui-panel 
-            div.weui-panel__hd 当前通知列表
+            div.weui-panel__hd 有效期内的通知
                 each noti,i in data
                     a.weui-media-box.weui-media-box_appmsg(href="/account/noti/detail/#{noti._id}")
                         div.weui-media-box__bd

@@ -245,7 +245,8 @@ exports = module.exports = function(app, passport) {
   app.post('/account/leave/detail/WechatIt/:id/',require('./views/account/wechat/sendMessage').sendMessage);//驳回申请单
   
   //accoutn》yue
-  app.get('/account/yue/',require('./views/account/yue/index').findall);
+  app.get('/account/yue/',require('./views/account/yue/index').findmy);
+  app.get('/account/yue/all/',require('./views/account/yue/all/index').findall);
   app.get('/account/yue/detail/:id',require('./views/account/yue/index').detail);
   app.post('/account/yue/detail/comment/:id/', require('./views/account/yue/index').comment);
   app.post('/account/yue/detail/gotit/:id/', require('./views/account/yue/index').gotit);

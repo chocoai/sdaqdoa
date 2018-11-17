@@ -1,6 +1,7 @@
+
 'use strict'
 
-exports.findall = function(req, res, next){
+exports.findmy = function(req, res, next){
   req.query.name = req.query.name ? req.query.name : '';
   req.query.limit = req.query.limit ? parseInt(req.query.limit, null) : 100;
   req.query.page = req.query.page ? parseInt(req.query.page, null) : 1;

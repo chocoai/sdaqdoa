@@ -85,7 +85,7 @@ app.use(require('serve-static')(path.join(__dirname, 'public')));
 app.use(require('method-override')());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(cookieParser(config.cryptoKey));
+app.use(cookieParser(config.cryptoKey,{ maxAge: 900000000 ,expires: new Date(Date.now() + 9000000000),}));
 app.use(session({
   resave: true,
   saveUninitialized: true,

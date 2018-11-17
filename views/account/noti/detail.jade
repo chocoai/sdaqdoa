@@ -11,7 +11,9 @@ block body
         p.weui-cells__title 概述 #{noti.general}
         article.weui-article !{noti.body}
         p.page__desc 附件： 
-            a(href="http://sdabj.com:8088/uploads/#{noti.files}") #{noti.files}
+            each file in yue.files
+                p
+                    a(href="#{webLink}/uploads/#{file}") #{file} 
         div.weui-panel 
             div.weui-panel__hd 评论区
                 each comment,i in noti.comments
@@ -23,7 +25,10 @@ block body
                                 li.weui-media-box__info__meta #{comment.cTime}
                 each comment,i in noti.commentsByReaders
                     a.weui-media-box.weui-media-box_appmsg
-                        img.weui-media-box__thumb(src="#{comment.cAvatar}" height="30px" style="width:30px;margin-right:5px;display:block")
+                        if(comment.cAvatar)
+                            img.weui-media-box__thumb(src="#{comment.cAvatar}" height="30px" style="width:30px;margin-right:5px;display:block")
+                        else
+                            img.weui-media-box__thumb(src="/media/none.png" height="30px" style="width:30px;margin-right:5px;display:block")
                         div.weui-media-box__bd
                             h4.weui-media-box__title #{comment.cBody}
                             ul.weui-media-box__info
@@ -56,7 +61,7 @@ block body
                 img.weui-tabbar__icon(src="/dist/weui/dist/example/images/icon_nav_button.png" alt="" )
                 p.weui-tabbar__label 当前通告
             a.weui-tabbar__item(href="/account/yue/")
-                img.weui-tabbar__icon(src="/dist/weui/dist/example/images/icon_nav_toast.png" alt="" )
+                img.weui-tabbar__icon(src="/dist/weui/dist/example/images/icon_nav_feedback.png" alt="" )
                 p.weui-tabbar__label 待阅阅签
             a.weui-tabbar__item(href="/account/setting/")
                 img.weui-tabbar__icon(src="/dist/weui/dist/example/images/icon_nav_nav.png" alt="" )

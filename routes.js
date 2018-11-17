@@ -112,6 +112,19 @@ exports = module.exports = function(app, passport) {
   app.post('/admin/noti/edit/:id/',require('./views/admin/noti/edit').save);
   app.post('/admin/noti/detail/commentbyreaders/:id/', require('./views/admin/noti/index').commentbyreaders);
 
+    //admin > yue //通知功能
+    app.get('/admin/yue/',require('./views/admin/yue/index').findall);
+    app.get('/admin/yue/add/',require('./views/admin/yue/add').add);
+    app.post('/admin/yue/add/',upload.single('avatar'),require('./views/admin/yue/add').create);
+    app.get('/admin/yue/manage/',require('./views/admin/yue/manage').findall);
+    app.get('/admin/yue/detail/:id',require('./views/admin/yue/index').detail);
+    app.post('/admin/yue/detail/comment/:id/', require('./views/admin/yue/index').comment);
+    app.post('/admin/yue/ding/:id/',require('./views/admin/yue/ding').noti);
+    app.post('/admin/yue/delete/:id/',require('./views/admin/yue/manage').delete);
+    app.get('/admin/yue/edit/:id/',require('./views/admin/yue/edit').editinit);//编辑
+    app.post('/admin/yue/edit/:id/',require('./views/admin/yue/edit').save);
+    app.post('/admin/yue/detail/commentbyreaders/:id/', require('./views/admin/yue/index').commentbyreaders);
+
   //upload
   app.get('/admin/upload/', require('./views/admin/upload/index').index);
   app.post('/admin/upload', require('./views/admin/upload/index').uploader);
@@ -230,18 +243,23 @@ exports = module.exports = function(app, passport) {
   app.post('/account/leave/detail/disagreeIt/:id/',require('./views/account/leave/proposeIt').disagreeIt);//驳回申请单
   app.post('/account/leave/detail/agreeIt/:id/',require('./views/account/leave/proposeIt').agreeIt);//驳回申请单
   app.post('/account/leave/detail/WechatIt/:id/',require('./views/account/wechat/sendMessage').sendMessage);//驳回申请单
+  
+  //accoutn》yue
+  app.get('/account/yue/',require('./views/account/yue/index').findall);
+  app.get('/account/yue/detail/:id',require('./views/account/yue/index').detail);
+  app.post('/account/yue/detail/comment/:id/', require('./views/account/yue/index').comment);
+  
+  //account>noti>api
+  app.get('/noti/api/',require('./views/account/noti/api/index').findall);
+  app.get('/noti/detail/:id',require('./views/account/noti/api/index').detail);
   //accoutn》noti
   app.get('/account/noti/',require('./views/account/noti/index').findall);
   app.get('/account/noti/noti',require('./views/account/noti/noti/index').noti);//通知类
   app.get('/account/noti/safe',require('./views/account/noti/noti/index').safe);//通知类
   app.get('/account/noti/tech',require('./views/account/noti/noti/index').tech);//通知类
-
+  app.get('/account/setting/',require('./views/account/setting/index').init);//设置主页
   app.get('/account/noti/detail/:id',require('./views/account/noti/index').detail);
   app.post('/account/noti/detail/comment/:id/', require('./views/account/noti/index').comment);
-  //account>noti>api
-  app.get('/noti/api/',require('./views/account/noti/api/index').findall);
-  app.get('/noti/detail/:id',require('./views/account/noti/api/index').detail);
-
   //account> article
   app.get('/account/article/',require('./views/account/article/index').findall);
   app.get('/account/article/unread/',require('./views/account/article/unread').unread);

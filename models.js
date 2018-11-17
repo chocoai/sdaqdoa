@@ -12,6 +12,7 @@ exports = module.exports = function(app, mongoose) {
   require('./schema/Event')(app, mongoose);
   require('./schema/Article')(app, mongoose);
   require('./schema/Noti')(app, mongoose);
+  require('./schema/Yue')(app, mongoose);
   require('./schema/Leave')(app, mongoose);
   require('./schema/Measure')(app, mongoose);
   require('./schema/Admin')(app, mongoose);

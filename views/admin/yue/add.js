@@ -46,12 +46,12 @@ exports.add = function(req, res, next){
         });
       });
       //console.log(userLists);
-      res.render('admin/noti/add',{userLists:userLists});
+      res.render('admin/yue/add',{userLists:userLists});
     }
   });
   // ding.getUsersList(function(users){
   //   console.log(users);
-  //   res.render('admin/noti/add',{userLists:users});
+  //   res.render('admin/yue/add',{userLists:users});
   // });
 }
 
@@ -98,15 +98,15 @@ exports.create = function(req, res, next){
         req.body.title
       ]
     };
-    req.app.db.models.Noti.create(fieldsToSet, function(err, noti) {
+    req.app.db.models.Yue.create(fieldsToSet, function(err, yue) {
       if (err) {
         return workflow.emit('exception', err);
       }
 
-      workflow.outcome.record = noti;
-      req.flash('success','Noti added');
-      res.location('/admin/noti/manage/');
-      res.redirect('/admin/noti/manage/');
+      workflow.outcome.record = yue;
+      req.flash('success','Yue added');
+      res.location('/admin/yue/manage/');
+      res.redirect('/admin/yue/manage/');
     });
   });
 

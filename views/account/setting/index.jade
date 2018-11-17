@@ -1,0 +1,63 @@
+extends ../../../layouts/wechat
+
+block head
+    title 我的账户
+
+block body
+    div.weui-tab
+        div.weui-tab_panel
+            div.weui-panel__hd 我的设置
+
+            div.weui-panel__bd
+                    div.weui-cells
+                        div.weui-cell
+                            div.weui-cell__bd
+                                p 头像
+                            div.imgheadborder
+                                img.imghead(src="#{user.avatar}")
+                    div.weui-cells__title 个人信息
+                    div.weui-cells
+                        div.weui-cell
+                            div.weui-cell__bd
+                                p 姓名
+                            div.weui-cell__ft #{user.name}
+                        div.weui-cell
+                            div.weui-cell__bd
+                                p 手机号
+                            div.weui-cell__ft #{user.mobile}
+                        div.weui-cell
+                            div.weui-cell__bd
+                                p 部门
+                            div.weui-cell__ft #{user.department_name}
+
+
+                    div.weui-cells__title 关于
+                    div.weui-cells
+                        a.weui-cell.weui-cell_access(href="#")
+                            div.weui-cell__bd
+                                p 关于系统
+                            div.weui-cell__ft 
+                        a.weui-cell.weui-cell_access(href="#")
+                            div.weui-cell__bd
+                                p 帮助
+                            div.weui-cell__ft 
+            div.page__bd.page__bd_spacing
+            div.weui-btn-area
+                a.weui-btn.weui-btn_warn(href="/logout/") 退出系统
+            div.weui-footer
+                p.weui-footer__txt Copyright © 2018 山航青岛维修基地
+
+                
+    div.weui-tabbar
+        a.weui-tabbar__item(href="/account/")
+            img.weui-tabbar__icon(src="/dist/weui/dist/example/images/icon_nav_panel.png" alt="" )
+            p.weui-tabbar__label 主页
+        a.weui-tabbar__item(href="/account/noti/")
+            img.weui-tabbar__icon(src="/dist/weui/dist/example/images/icon_nav_button.png" alt="" )
+            p.weui-tabbar__label 当前通告
+        a.weui-tabbar__item(href="/account/yue/")
+            img.weui-tabbar__icon(src="/dist/weui/dist/example/images/icon_nav_toast.png" alt="" )
+            p.weui-tabbar__label 待阅阅签
+        a.weui-tabbar__item.weui-bar__item_on(href="/account/setting/")
+            img.weui-tabbar__icon(src="/dist/weui/dist/example/images/icon_nav_nav.png" alt="" )
+            p.weui-tabbar__label 我的

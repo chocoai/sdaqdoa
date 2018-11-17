@@ -15,7 +15,7 @@ exports.findall = function(req, res, next){
 
   filters.timeFinished = {"$gte" : date};
 
-  req.app.db.models.Noti.pagedFind({
+  req.app.db.models.Yue.pagedFind({
     filters: filters,
     keys: 'title general creator isImportant timeFinished type readers',
     limit: req.query.limit,
@@ -34,19 +34,19 @@ exports.findall = function(req, res, next){
     else {
       results.filters = req.query;
       var articles = results.data.reverse();
-      res.render('account/noti/index', { data: articles});
+      res.render('account/yue/index', { data: articles});
     }
   });
 };
 
 
 exports.detail = function(req, res, next){
-  req.app.db.models.Noti.findById(req.params.id).exec(function(err, result) {
+  req.app.db.models.Yue.findById(req.params.id).exec(function(err, result) {
     if (err) {
       return next(err);
     }
     if (req.xhr) {
-      res.send(noti);
+      res.send(yue);
     }
     else {
       var readers = result.readers;
@@ -59,7 +59,7 @@ exports.detail = function(req, res, next){
       });
       //console.log(teams);
       //console.log(result);
-      res.render('account/noti/detail', { noti:result,teams:teams});
+      res.render('account/yue/detail', { yue:result,teams:teams});
     }
   });
 };
@@ -82,13 +82,13 @@ exports.comment= function(req, res, next){
 
     workflow.on('addComment', function() {
     if(req.body.comment == ""){req.body.comment = "评论为空"}
-    req.app.db.models.Noti.findById(req.params.id).exec(function(err, result) {
+    req.app.db.models.Yue.findById(req.params.id).exec(function(err, result) {
       if (err) {
         return next(err);
       }
 
       if (req.xhr) {
-        res.send(noti);
+        res.send(yue);
       }
       else {
         commentsByReaders = result.commentsByReaders;
@@ -105,14 +105,14 @@ exports.comment= function(req, res, next){
               commentsByReaders:commentsByReaders
             }
             
-            req.app.db.models.Noti.findByIdAndUpdate(req.params.id, fieldsToSet, function(err, measurement) {
+            req.app.db.models.Yue.findByIdAndUpdate(req.params.id, fieldsToSet, function(err, measurement) {
               if (err) {
                 return workflow.emit('exception', err);
               }
 
               workflow.outcome.record = measurement;
-              res.location('/account/noti/detail/'+ req.params.id);
-              res.redirect('/account/noti/detail/'+ req.params.id);
+              res.location('/account/yue/detail/'+ req.params.id);
+              res.redirect('/account/yue/detail/'+ req.params.id);
             });
           }
 

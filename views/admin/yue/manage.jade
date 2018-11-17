@@ -19,21 +19,21 @@ block body
                             th 发布人
                             th 操作
                     tbody
-                        each noti,i in data
+                        each yue,i in data
                             tr
                                 td #{i+1}
-                                td #{noti.type}
-                                td #{noti.title}
-                                    if noti.isImportant
+                                td #{yue.type}
+                                td #{yue.title}
+                                    if yue.isImportant
                                         span.label.label-danger 重要
-                                td #{noti.general}
-                                td #{noti.timeFinished}
-                                td #{noti.creator}
+                                td #{yue.general}
+                                td #{yue.timeFinished}
+                                td #{yue.creator}
                                 td 
-                                    form(method='post', action='/admin/noti/ding/#{noti._id}/')
-                                        a.btn.btn-default(href="/admin/noti/detail/#{noti._id}") 查看
-                                        button.btn.btn-success(type="button" data-toggle="modal" data-target="#dingModal#{noti._id}") 钉钉
-                                        div.modal.fade(id="dingModal#{noti._id}" tabindex="-1" role="dialog" aria-labelledby="dingModalLabel")
+                                    form(method='post', action='/admin/yue/ding/#{yue._id}/')
+                                        a.btn.btn-default(href="/admin/yue/detail/#{yue._id}") 查看
+                                        button.btn.btn-success(type="button" data-toggle="modal" data-target="#dingModal#{yue._id}") 钉钉
+                                        div.modal.fade(id="dingModal#{yue._id}" tabindex="-1" role="dialog" aria-labelledby="dingModalLabel")
                                             div.modal-dialog(role="document")
                                                 div.modal-content
                                                     div.modal-header
@@ -45,8 +45,8 @@ block body
                                                         div.form-group
                                                             button.btn.btn-success(type='submit') 钉钉推送
                                                             button.btn.btn-default(data-dismiss="modal") 关闭
-                                    form(method='post', action='/admin/noti/delete/#{noti._id}/')
-                                        a.btn.btn-warning(href="/admin/noti/edit/#{noti._id}") 编辑
+                                    form(method='post', action='/admin/yue/delete/#{yue._id}/')
+                                        a.btn.btn-warning(href="/admin/yue/edit/#{yue._id}") 编辑
                                         button.btn.btn-danger(type="button" data-toggle="modal" data-target="#deleteModal") 删除
                                         div.modal.fade(id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel")
                                             div.modal-dialog(role="document")

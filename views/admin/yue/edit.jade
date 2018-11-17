@@ -1,0 +1,95 @@
+extends ../../../layouts/admin
+
+block head
+  title 编辑通知类
+
+block body
+    div.row
+        form(method='post', action='/admin/yue/edit/#{yue._id}',)
+            div.col-sm-8
+                div.page-header
+                    h1 编辑通知
+                div.form-group
+                    label 种类：（必填）
+                    select(required="required" name="type" vaule="#{yue.type}")
+                        case yue.type
+                            when "阅签"
+                                option(value="阅签" selected) 
+                                option(value="技术分析") 技术分析
+                                option(value="质量信息") 质量信息
+                                option(value="培训类") 培训类
+                            when "技术分析"
+                                option(value="阅签") 阅签
+                                option(value="技术分析" selected) 技术分析
+                                option(value="质量信息") 质量信息
+                                option(value="培训类") 培训类
+                            when "质量信息"
+                                option(value="阅签") 阅签
+                                option(value="技术分析") 技术分析
+                                option(value="质量信息" selected) 质量信息
+                                option(value="培训类") 培训类
+                            when "培训类"
+                                option(value="阅签") 阅签
+                                option(value="技术分析") 技术分析
+                                option(value="质量信息") 质量信息
+                                option(value="培训类" selected) 培训类
+                div.form-group
+                    label 标题：（必填）
+                    input.form-control(type='text', name='title' placeholder="标题" required="required" value="#{yue.title}")
+                div.form-group
+                    label 是否重要：
+                        if yue.isImportant
+                            input(type='checkbox', name='isImportant' checked="#{yue.isImportant}")
+                        else
+                            input(type='checkbox', name='isImportant')
+                    p 重要的通知，考虑置顶显示
+                label 通知以下人员（必填）(需多于一人，否则无效)
+                select(multiple="multiple" required="required" name="toPersons" id="persons")
+                    each userList in userLists
+                        optgroup(label="#{userList.team}")
+                            each user in userList.userList
+                                if user.checked
+                                    option(value="#{user.username}/#{user.name}/#{userList.team}" selected="#{user.checked}") #{user.name}
+                                else
+                                    option(value="#{user.username}/#{user.name}/#{userList.team}") #{user.name}
+                div.form-group
+                    label 概述：（必填）
+                    textarea.form-control(type='text', rows="3" name='general' required="required") #{yue.general}
+                div.form-group
+                    label 发布人：（必填）
+                    input.form-control(type='text', name='creator' required="required" value="#{yue.creator}")                    
+                div.form-group
+                    label 截至时间：（必填）
+                    input.form-control(type='date', name='timeFinished' required="required" value="#{yue.timeFinished}") 
+                div.form-group
+                    label 正文：（必填）
+                    textarea.form-control(type='text', rows="50" name='body' id="editor" required="required") #{yue.body}
+                div.form-group
+                    label 文件上传
+                    input(type="file" id="file1" name="myFile")
+                    img(src="/media/timg.gif" style="display:none" id="imgWait")
+                    button.btn.btn-primary(type="button" id="upload") 上传文件
+                div.form-group
+                    label 已上传附件（上传一个附件后会自动加入一行记录；如需删除附件，删除相应的行即可）
+                    textarea.form-control(type="text" rows="5" id="files" name="Files") #{yue.files.join("\n")}
+                div.form-group
+                    button.btn.btn-warning.btn-signup.btn-block(type='submit') 修改通知
+            div.col-sm-4
+                div.page-header
+                    h1 注意事项
+                    p 要在正文中插入图片，现在这里上传图片，后会得到一个链接地址，把该地址加入正文即可
+                div.form-group
+                    label 正文要插入的图片上传
+                    input(type="file" id="image" name="myFile")
+                    img(src="/media/timg.gif" style="display:none" id="imgWait")
+                    button.btn.btn-primary(type="button" id="uploadImage") 上传图片
+                div.form-group
+                    label 已上传的图片地址
+                    input.form-control(type="text" id="imageUploaded")
+    script(src='/assets/js/vendor/jquery.min.js')
+    script(src='/assets/js/uploader.js')
+    script(src='/assets/mutiselect/multiple-select.js')
+    script(src='/assets/js/checkboxSelect.js')
+    script(src='/ckeditor/ckeditor.js')
+    script
+        | CKEDITOR.replace('editor');

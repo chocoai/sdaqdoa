@@ -1,0 +1,63 @@
+extends ../../../layouts/wechat
+
+block head
+  title #{yue.title}
+
+block body
+    div.weui-tab
+        h1.page__title #{yue.title}
+        p.page__desc 发布人： #{yue.creator}
+        p.page__desc 发布时间： #{yue.timeCreated}
+        p.weui-cells__title 概述 #{yue.general}
+        article.weui-article !{yue.body}
+        p.page__desc 附件： 
+            a(href="http://sdabj.com:8088/uploads/#{yue.files}") #{yue.files}
+        div.weui-panel 
+            div.weui-panel__hd 评论区
+                each comment,i in yue.comments
+                    a.weui-media-box.weui-media-box_appmsg
+                        div.weui-media-box__bd
+                            h4.weui-media-box__title #{comment.cBody}
+                            ul.weui-media-box__info
+                                li.weui-media-box__info__meta #{comment.cName}
+                                li.weui-media-box__info__meta #{comment.cTime}
+                each comment,i in yue.commentsByReaders
+                    a.weui-media-box.weui-media-box_appmsg
+                        img.weui-media-box__thumb(src="#{comment.cAvatar}" height="30px" style="width:30px;margin-right:5px;display:block")
+                        div.weui-media-box__bd
+                            h4.weui-media-box__title #{comment.cBody}
+                            ul.weui-media-box__info
+                                li.weui-media-box__info__meta #{comment.cName}
+                                li.weui-media-box__info__meta #{comment.cTime}
+
+        div.weui-panel
+            div.weui-panel__hd 添加评论
+            form(method='post', action='/account/yue/detail/comment/#{yue._id}/')
+                div.weui-cell
+                    div.weui-cell__bd
+                        textarea.weui-textarea(name="comment", rows="3" placeholder="添加你的评论" required) 
+                div.weui-cell
+                        button.weui-btn.weui-btn_primary(type='submit') 提交评论
+        div.weui-panel 通知以下人员
+            each team in teams
+                div.weui-panel__hd #{team}
+                    div
+                        each reader in yue.readers
+                            if(team == reader.team)
+                                a.weui-btn.weui-btn_mini.weui-btn_default #{reader.name}
+        div.weui-footer
+            a.weui-footer__link(href="/account/") OA首页
+            p.eui-footer__text Copyright © 2018 山东航空青岛维修基地
+        div.weui-tabbar
+            a.weui-tabbar__item(href="/account/")
+                img.weui-tabbar__icon(src="/dist/weui/dist/example/images/icon_nav_panel.png" alt="" )
+                p.weui-tabbar__label 主页
+            a.weui-tabbar__item.weui-bar__item_on(href="/account/yue/")
+                img.weui-tabbar__icon(src="/dist/weui/dist/example/images/icon_nav_button.png" alt="" )
+                p.weui-tabbar__label 当前通告
+            a.weui-tabbar__item(href="/account/yue/")
+                img.weui-tabbar__icon(src="/dist/weui/dist/example/images/icon_nav_toast.png" alt="" )
+                p.weui-tabbar__label 待阅阅签
+            a.weui-tabbar__item(href="/account/setting/")
+                img.weui-tabbar__icon(src="/dist/weui/dist/example/images/icon_nav_nav.png" alt="" )
+                p.weui-tabbar__label 我的

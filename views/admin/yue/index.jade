@@ -1,0 +1,19 @@
+extends ../../../layouts/admin
+
+block head
+    title 阅签列表
+
+block body
+    div.row
+        div.col-sm-8
+            div.page-header
+                h1 阅签列表
+            div.page-body
+                 div.list-group
+                    each yue,i in data
+                        a.list-group-item(href="/admin/yue/detail/#{yue._id}")
+                            h4.list-group-item-heading #{yue.title}
+                                if yue.isImportant
+                                    span.label.label-danger 重要
+                            p 概述：#{yue.general} 
+                            p.text-right 截至日期：#{yue.timeFinished}

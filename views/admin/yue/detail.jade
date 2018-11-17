@@ -1,43 +1,43 @@
 extends ../../../layouts/admin
 
 block head
-  title #{noti.title}
+  title #{yue.title}
 
 block body
   div.row
     div.col-sm-8
         div.page-header
-            h1 #{noti.title}
+            h1 #{yue.title}
         p 
             strong 发布人:  
-            | #{noti.creator}
+            | #{yue.creator}
         p 
             strong 发布时间:  
-            | #{noti.timeCreated}
+            | #{yue.timeCreated}
         p 
             strong 截止日期:  
-            | #{noti.timeFinished}
+            | #{yue.timeFinished}
         p.lead 
             strong 概述:  
-            | #{noti.general}
-        p !{noti.body}
+            | #{yue.general}
+        p !{yue.body}
         p 
             strong 附件:  
-        each file in noti.files
+        each file in yue.files
             p
                 a(href="#{webLink}/uploads/#{file}") #{file} 
         p
-            a.btn.btn-default.btn-block(href='/admin/noti/')
+            a.btn.btn-default.btn-block(href='/admin/yue/')
                 i.fa.fa-arrow-circle-left
                 |   返回所有通知列表
         h2 评论区：
         p （管理员在这里评论，用户端会置顶显示，可以用于领导批语，或者通知补充）
         p 
-            each comment,i in noti.comments
+            each comment,i in yue.comments
                 blockquote #{comment.cBody}
                     p.text-right #{comment.cName}
                         small #{comment.cTime}
-        form(method='post', action='/admin/noti/detail/comment/#{noti._id}/')
+        form(method='post', action='/admin/yue/detail/comment/#{yue._id}/')
             button.btn.btn-warning.btn-block(type="button" data-toggle="modal" data-target="#myModal") 添加备注
             div.modal.fade(id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel")
                 div.modal-dialog(role="document")
@@ -55,11 +55,11 @@ block body
                                 button.btn.btn-warning(type='submit') 评论
                                 button.btn.btn-default(data-dismiss="modal") 关闭
         p 
-            each comment,i in noti.commentsByReaders
+            each comment,i in yue.commentsByReaders
                 blockquote #{comment.cBody}
                     p.text-right #{comment.cName}
                         small #{comment.cTime}
-        form(method='post', action='/admin/noti/detail/commentbyreaders/#{noti._id}/')
+        form(method='post', action='/admin/yue/detail/commentbyreaders/#{yue._id}/')
             button.btn.btn-success.btn-block(type="button" data-toggle="modal" data-target="#commentModal") 添加评论
             div.modal.fade(id="commentModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel")
                 div.modal-dialog(role="document")
@@ -84,6 +84,6 @@ block body
                 div.col-sm-12
                     h4 #{team}
                     p
-                        each reader in noti.readers
+                        each reader in yue.readers
                             if(team == reader.team)
                                 span.col-sm-3 #{reader.name}

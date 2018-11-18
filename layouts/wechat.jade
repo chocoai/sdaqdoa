@@ -17,7 +17,19 @@ html
   body
 
     block body
-
+    div.weui-tabbar
+      a.weui-tabbar__item(href="/account/")
+          img.weui-tabbar__icon(src="/dist/weui/dist/example/images/icon_nav_panel.png" alt="" )
+          p.weui-tabbar__label 主页
+      a.weui-tabbar__item(href="/account/noti/")
+          img.weui-tabbar__icon(src="/dist/weui/dist/example/images/icon_nav_button.png" alt="" )
+          p.weui-tabbar__label 当前通告
+      a.weui-tabbar__item(href="/account/yue/")
+          img.weui-tabbar__icon(src="/dist/weui/dist/example/images/icon_nav_feedback.png" alt="" )
+          p.weui-tabbar__label 待阅阅签
+      a.weui-tabbar__item(href="/account/setting/")
+          img.weui-tabbar__icon(src="/dist/weui/dist/example/images/icon_nav_nav.png" alt="" )
+          p.weui-tabbar__label 我的
     //div.ajax-spinner
     //img(src='/media/ajax-pulse.gif', alt='Loading')
 

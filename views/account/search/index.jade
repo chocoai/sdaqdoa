@@ -1,0 +1,20 @@
+extends ../../../layouts/wechat
+
+block head
+    title 我的OA主页
+
+block body
+    div.weui-tab
+        div.weui-tab_panel
+                div.weui-search-bar#searchBar
+                    form.weui-search-bar__form(action="/account/search/" method="POST")
+                        div.weui-search-bar__box
+                            i.weui-icon-search
+                            input.weui-search-bar__input#searchInput(type="search" placeholder="搜索" name="text" required="")
+                            a.weui-icon-clear#searchClear(href="javascript:")
+                        label.weui-search-bar__label#searchText
+                            i.weui-icon-search
+                            span 所有
+                    a.weui-search-bar__cancel-btn#searchCancel(href="javascript:" ) 取消
+        p.desc 功能还没做好~~~~
+    script(src="/assets/js/search.js")

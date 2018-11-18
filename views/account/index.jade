@@ -9,7 +9,7 @@ block body
             div.page__hd
                 h1.page__title OA主页
                 p.page__desc SDA青岛维修基地
-                p.page__desc 点击下面的按钮，查询相应种类的所有文件
+                p.page__desc 点击下面的按钮，查询所有历史文件
             div.weui-grids
                 a.weui-grid(href="./noti/noti/")
                     div.weui-grid__icon
@@ -27,18 +27,9 @@ block body
                     div.weui-grid__icon
                         img(src="/dist/weui/dist/example/images/icon_nav_toast.png", alt="")
                         p.weui-grid__label 阅签
+                a.weui-grid(href="./search/")
+                    div.weui-grid__icon
+                        img(src="/dist/weui/dist/example/images/icon_nav_search_bar.png", alt="")
+                        p.weui-grid__label 搜索
             div(style="display:none") page2
             div(style="display:none") page3
-        div.weui-tabbar
-            a.weui-tabbar__item.weui-bar__item_on(href="/account/")
-                img.weui-tabbar__icon(src="/dist/weui/dist/example/images/icon_nav_panel.png" alt="" )
-                p.weui-tabbar__label 主页
-            a.weui-tabbar__item(href="/account/noti/")
-                img.weui-tabbar__icon(src="/dist/weui/dist/example/images/icon_nav_button.png" alt="" )
-                p.weui-tabbar__label 当前通告
-            a.weui-tabbar__item(href="/account/yue/")
-                img.weui-tabbar__icon(src="/dist/weui/dist/example/images/icon_nav_feedback.png" alt="" )
-                p.weui-tabbar__label 待阅阅签
-            a.weui-tabbar__item(href="/account/setting/")
-                img.weui-tabbar__icon(src="/dist/weui/dist/example/images/icon_nav_nav.png" alt="" )
-                p.weui-tabbar__label 我的

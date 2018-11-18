@@ -41,11 +41,12 @@ exports.findmy = function(req, res, next){
         var gotit = true;
         if(article.readers.findIndex(function(element,j,array){return element.id == req.user.username;}) != -1){
           need = true;
+          var reader = article.readers.find(function(element,j,array){return element.id == req.user.username;});
+          if(reader.isFinished == false){
+            gotit = false;
+          }
         }
-        var reader = article.readers.find(function(element,j,array){return element.id == req.user.username;});
-        if(reader.isFinished == false){
-          gotit = false;
-        }
+        
         articles[i].need = need;
         articles[i].gotit = gotit;
       });
@@ -195,8 +196,8 @@ exports.gotit= function(req, res, next){
           //   });
 
             
-               res.location('/account/yue/detail/'+ req.params.id);
-               res.redirect('/account/yue/detail/'+ req.params.id);
+               res.location('/account/yue/');
+               res.redirect('/account/yue/');
             });
           // }
 

@@ -14,7 +14,10 @@ block body
                             div.weui-cell__bd
                                 p 头像
                             div.imgheadborder
-                                img.imghead(src="#{user.avatar}")
+                                if(user.avatar)
+                                    img.imghead(src="#{user.avatar}")
+                                else
+                                    img.imghead(src="/media/none.png")
                     div.weui-cells__title 个人信息
                     div.weui-cells
                         div.weui-cell

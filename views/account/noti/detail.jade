@@ -40,9 +40,9 @@ block body
             form(method='post', action='/account/noti/detail/comment/#{noti._id}/')
                 div.weui-cell
                     div.weui-cell__bd
-                        textarea.weui-textarea(name="comment", rows="3" placeholder="添加你的评论" required) 
+                        textarea.weui-textarea(name="comment",id="words" rows="3"  onkeyup="pass()" placeholder="添加你的评论" required) 
                 div.weui-cell
-                        button.weui-btn.weui-btn_primary(type='submit') 提交评论
+                        button.weui-btn.weui-btn_primary.weui-btn_disabled(type='submit' id="btn" disabled="true") 提交评论
         div.weui-panel 通知以下人员
             each team in teams
                 div.weui-panel__hd #{team}
@@ -53,16 +53,4 @@ block body
         div.weui-footer
             a.weui-footer__link(href="/account/") OA首页
             p.eui-footer__text Copyright © 2018 山东航空青岛维修基地
-        div.weui-tabbar
-            a.weui-tabbar__item(href="/account/")
-                img.weui-tabbar__icon(src="/dist/weui/dist/example/images/icon_nav_panel.png" alt="" )
-                p.weui-tabbar__label 主页
-            a.weui-tabbar__item.weui-bar__item_on(href="/account/noti/")
-                img.weui-tabbar__icon(src="/dist/weui/dist/example/images/icon_nav_button.png" alt="" )
-                p.weui-tabbar__label 当前通告
-            a.weui-tabbar__item(href="/account/yue/")
-                img.weui-tabbar__icon(src="/dist/weui/dist/example/images/icon_nav_feedback.png" alt="" )
-                p.weui-tabbar__label 待阅阅签
-            a.weui-tabbar__item(href="/account/setting/")
-                img.weui-tabbar__icon(src="/dist/weui/dist/example/images/icon_nav_nav.png" alt="" )
-                p.weui-tabbar__label 我的
+

@@ -244,6 +244,9 @@ exports = module.exports = function(app, passport) {
   app.post('/account/leave/detail/agreeIt/:id/',require('./views/account/leave/proposeIt').agreeIt);//驳回申请单
   app.post('/account/leave/detail/WechatIt/:id/',require('./views/account/wechat/sendMessage').sendMessage);//驳回申请单
   
+  //accoutn》serarch
+  app.get('/account/search/',require('./views/account/search/index').init);
+  app.post('/account/search/',require('./views/account/search/index').search);
   //accoutn》yue
   app.get('/account/yue/',require('./views/account/yue/index').findmy);
   app.get('/account/yue/all/',require('./views/account/yue/all/index').findall);

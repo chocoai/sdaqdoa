@@ -81,7 +81,7 @@ app.set('view engine', 'jade');
 //app.use(multer({ dest:'/public/uploads'}));
 app.use(require('morgan')('dev'));
 app.use(require('compression')());
-app.use(require('serve-static')(path.join(__dirname, 'public')));
+app.use(require('serve-static')(path.join(__dirname, 'public'),{maxAge:3600000}));
 app.use(require('method-override')());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));

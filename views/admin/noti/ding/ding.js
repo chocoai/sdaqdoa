@@ -201,7 +201,7 @@ exports.ding = function(username,text,url){
                 },
                 formData:
                 { 
-                    msg: '{"msgtype": "link","link": {"messageUrl":"'+url+'","picUrl":"http://sdabj.com:8088/media/timg.jpg","title":"OA通知提醒","text": "' +text +'"}}',
+                    msg: '{"msgtype": "link","link": {"messageUrl":"'+url+'","picUrl":"http://sdabj.com:8088/media/noti.jpg","title":"OA通知提醒","text": "' +text +'"}}',
                     access_token: parsedData.access_token,
                     agent_id: '202966773',
                     userid_list: username

@@ -26,12 +26,12 @@ exports = module.exports = function(app, mongoose) {
   });
   userSchema.methods.canPlayRoleOf = function(role) {
     if (this.roles === "admin" && role === "admin") {
-      console.log("role of admin");
+      //console.log("role of admin");
       return true;
     }
 
     if (this.roles === "account" && role === "account") {
-      console.log("role of account");
+      //console.log("role of account");
       return true;
     }
 
@@ -39,7 +39,7 @@ exports = module.exports = function(app, mongoose) {
   };
   userSchema.methods.defaultReturnUrl = function() {
     var returnUrl = '/';
-    console.log("判断路径");
+    //console.log("判断路径");
     if (this.canPlayRoleOf('account')) {
 
       returnUrl = '/account/';

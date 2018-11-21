@@ -183,7 +183,7 @@ exports.sync = function(req, res, next){
   var users = [];
   console.log("为什么运行两次");
   Ding.getUsersList(function(userslist){
-    console.log("回调时，得到的分队数量"+userslist.length);
+    console.log("回调时，得到的分队数量"+ userslist.length);
     console.log("得到按照部门排列的人员详情");
     //将人员信息去重后，压入数组中，准备同步数据库
     userslist.forEach(team => {

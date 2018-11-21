@@ -47,8 +47,8 @@ block body
                                                             button.btn.btn-default(data-dismiss="modal") 关闭
                                     form(method='post', action='/admin/noti/delete/#{noti._id}/')
                                         a.btn.btn-warning(href="/admin/noti/edit/#{noti._id}") 编辑
-                                        button.btn.btn-danger(type="button" data-toggle="modal" data-target="#deleteModal") 删除
-                                        div.modal.fade(id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel")
+                                        button.btn.btn-danger(type="button" data-toggle="modal" data-target="#deleteModal#{noti._id}") 删除
+                                        div.modal.fade(id="deleteModal#{noti._id}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel")
                                             div.modal-dialog(role="document")
                                                 div.modal-content
                                                     div.modal-header

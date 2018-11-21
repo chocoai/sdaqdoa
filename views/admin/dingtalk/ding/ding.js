@@ -80,7 +80,7 @@ exports.getUsersList = function(callback){
                 res.on('end', () => {
                   try {
                     const departData = JSON.parse(rawData);
-
+                    console.log(departData);
                     console.log("得到部门信息～～～～～～～"+departData.department.length);
                     //console.log(departData.department);//得到departments
                     departData.department.forEach(function(depart,i,departments){

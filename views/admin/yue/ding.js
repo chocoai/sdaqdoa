@@ -23,7 +23,8 @@ exports.noti = function(req, res, next){
             });
             console.log("拼接后的用户"+usernames);
             Ding.ding(usernames,result.general,"http://sdaoa.com:8088/account/yue/detail/"+req.params.id);
+            res.redirect('/admin/yue/manage/');
         }
       });
-    res.redirect('/admin/yue/manage/');
+    
 }

@@ -35,7 +35,7 @@ exports.findmy = function(req, res, next){
     else {
       results.filters = req.query;
       var articles = results.data.reverse();
-      console.log(articles);
+      //console.log(articles);
       articles.forEach(function(article,i,articles){
         var need = false;
         var gotit = true;
@@ -171,11 +171,11 @@ exports.gotit= function(req, res, next){
       }
       else {
         readers = result.readers;
-        console.log(readers);
+        //console.log(readers);
         var commentTime = new Date();
-        console.log(req.user);
+        //console.log(req.user);
         var req_user = readers.findIndex(function(element,index,array){return element.id == req.user.username;});
-        console.log(readers[req_user]);
+        //console.log(readers[req_user]);
         readers[req_user].isFinished = true;
         readers[req_user].fb = req.body.comment;
         var fieldsToSet = {
@@ -187,6 +187,8 @@ exports.gotit= function(req, res, next){
           }
 
         workflow.outcome.record = measurement;
+        res.location('/account/yue/');
+        res.redirect('/account/yue/');
           // if (req.user && req.body.gotit ) {
           //   readers.push({
           //     cBody:req.body.gotit,
@@ -196,8 +198,7 @@ exports.gotit= function(req, res, next){
           //   });
 
             
-               res.location('/account/yue/');
-               res.redirect('/account/yue/');
+               
             });
           // }
 

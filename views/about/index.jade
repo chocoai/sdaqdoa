@@ -1,38 +1,41 @@
-extends ../../layouts/default
+extends ../../layouts/wechat
 
 block head
-  title 关于此次测评
+  title 关于新系统
 
 block neck
-  link(rel='stylesheet', href='/views/about/index.min.css?#{cacheBreaker}')
 
 block body
-  div.row
-    div.col-sm-6
-      div.page-header
-        h1 OA系统开发日志
-      div.media
-        a.pull-left(href='#')
-        div.media-body
-          h4.media-heading 人员范围：
-          p 北京中队全体员工
-      div.media
-        a.pull-left(href='#')
-        div.media-body
-          h4.media-heading 实现的功能：
-          ul
-            li 年底绩效测评 2016.12.27
-            li 通知下达 2017.01.15
-            li 微信企业号的连接 2017.01.14
-            li 请销假系统
-      div.media
-        a.pull-left(href='#')
-        div.media-body
-          h4.media-heading 计划开发功能功能：
-          ul
-            li 附件添加
-    div.col-sm-6.special
-      div.page-header
-        h1 通告
-      p.lead 更多功能正在开发中。。。。
-      i.fa.fa-volume-up.super-awesome
+    div.weui-tab
+        h1.page__title 新OA说明(测试版)
+        p.weui-cells__title 概述  新的OA系统新添加了钉钉内免密登录和消息推送功能，目前正在测试状态
+        div.weui-panel 
+            div.weui-panel__hd 一、入口
+          article.weui-article 
+            p 新的OA系统的入口有两个，一个是工作台中找到青岛基地OA。
+              img(src="/media/about/home.jpg", alt="")
+            p 另一个是，点击系统的消息提醒，直接查看该消息的内容
+              img(src="/media/about/sms.jpg", alt="")
+        div.weui-panel 
+          div.weui-panel__hd 二、登录
+          article.weui-article 
+            p 新OA系统采用了钉钉免密登陆，进入后，系统会自动识别人员，直接登录。如果失败，请刷新界面或者重新进入
+              img(src="/media/about/login.jpg", alt="")
+        div.weui-panel 
+          div.weui-panel__hd 三、主界面
+          article.weui-article 
+            p 系统共有“主页”，”当前通知“，”未阅签文件“，”我的“四个主页面
+              img(src="/media/about/main.jpg", alt="")
+        div.weui-panel 
+          div.weui-panel__hd 四、通告类
+          article.weui-article 
+            p 从”当前通告“页，可以查看近期的通知，历史通知青岛主页分类别查询
+            p 点击任一通知后，即进入详情页
+              img(src="/media/about/notilist.jpg", alt="")
+        div.weui-panel 
+          div.weui-panel__hd 四、阅签类
+          article.weui-article 
+            p 从”待阅阅签“页，可以查看你的未完成的阅签，历史阅签请在青岛主页分类别查询，
+            p 进入阅签详情页后，请反馈信息并按”阅签“按键，即可完成阅签，阅签的最下面有所有人员按照分队排列的阅签详情，方便分队内互相提醒
+              img(src="/media/about/yue.jpg", alt="")
+        

@@ -11,7 +11,7 @@ function pass(){
 
     var ps = $('textarea#words').val();
 
-    if (ps.length<2) {
+    if (ps.length<5) { 
         console.log("too shrot");
         btn.attr("disabled",true);
         btn.addClass('weui-btn_disabled');

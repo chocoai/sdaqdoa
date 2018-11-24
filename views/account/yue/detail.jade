@@ -23,8 +23,7 @@ block body
                 else
                     form(method='post', action='/account/yue/detail/gotit/#{yue._id}/')
                         div.weui-cell
-                            div.weui-cell__bd
-                                textarea.weui-textarea(name="gotit", rows="1" placeholder="添加你的反馈：我已阅" required) 
+                            textarea.weui-textarea(name="gotit", rows="1" placeholder="添加你的反馈：我已阅" required) 已阅
                         div.weui-cell
                             button.weui-btn.weui-btn_warn(type='submit') 阅签
                     
@@ -56,7 +55,7 @@ block body
             form(method='post', action='/account/yue/detail/comment/#{yue._id}/')
                 div.weui-cell
                     div.weui-cell__bd
-                        textarea.weui-textarea(name="comment", id="words" rows="3"  onkeyup="pass()" placeholder="添加你的评论" required) 
+                        textarea.weui-textarea(name="comment", id="words" rows="3"  onkeyup="pass()" placeholder="添加你的评论,大于5个字，阅签不要填在这里，这里是用来反馈疑问的" required)
                 div.weui-cell
                         button.weui-btn.weui-btn_primary.weui-btn_disabled(type='submit' id="btn" disabled="true") 提交评论
         div.weui-panel 未完成人员

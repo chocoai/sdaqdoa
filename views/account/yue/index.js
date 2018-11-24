@@ -187,8 +187,10 @@ exports.gotit= function(req, res, next){
           }
 
         workflow.outcome.record = measurement;
-        res.location('/account/yue/');
-        res.redirect('/account/yue/');
+        res.location('/account/yue/detail/'+ req.params.id);
+        res.redirect('/account/yue/detail/'+ req.params.id);
+        // res.location('/account/yue/');
+        // res.redirect('/account/yue/');
           // if (req.user && req.body.gotit ) {
           //   readers.push({
           //     cBody:req.body.gotit,

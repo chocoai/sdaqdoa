@@ -40,7 +40,7 @@ block body
             form(method='post', action='/account/noti/detail/comment/#{noti._id}/')
                 div.weui-cell
                     div.weui-cell__bd
-                        textarea.weui-textarea(name="comment",id="words" rows="3"  onkeyup="pass()" placeholder="添加你的评论" required) 
+                        textarea.weui-textarea(name="comment",id="words" rows="3"  onkeyup="pass()" placeholder="添加你的评论，这里是用来反馈问题的" required)
                 div.weui-cell
                         button.weui-btn.weui-btn_primary.weui-btn_disabled(type='submit' id="btn" disabled="true") 提交评论
         div.weui-panel 通知以下人员

@@ -6,7 +6,7 @@ exports.findall = function(req, res, next){
         req.query.name = req.query.name ? req.query.name : '';
         req.query.limit = req.query.limit ? parseInt(req.query.limit, null) : 100;
         req.query.page = req.query.page ? parseInt(req.query.page, null) : 1;
-        req.query.sort = req.query.sort ? req.query.sort : 'timeFinished';
+        req.query.sort = req.query.sort ? req.query.sort : '-_id';
 
         var filters = {};
         if (req.query.username) {
@@ -31,7 +31,7 @@ exports.findall = function(req, res, next){
             }
             else {
             results.filters = req.query;
-            res.render('admin/yue/manage', { data: results.data.reverse() });
+            res.render('admin/yue/manage', { data: results.data});
             }
         });
 };

@@ -210,7 +210,6 @@ exports.ding = function(username,text,url){
             console.log(options);
             request(options, function (error, response, body) {
             if (error) throw new Error(error);
-
                 console.log(body);
             });
             

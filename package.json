@@ -61,7 +61,7 @@
     "html5shiv": "3.x.x",
     "jquery": "2.x.x",
     "jquery.cookie": "1.x.x",
-    "moment": "2.13.x",
+    "moment": "^2.13.0",
     "respond.js": "1.x.x"
   }
 }

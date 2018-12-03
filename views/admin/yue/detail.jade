@@ -8,6 +8,8 @@ block body
     div.col-sm-8
         div.page-header
             h1 #{yue.title}
+                if yue.end
+                   span.label.label-default 已结束
         p 
             strong 发布人:  
             | #{yue.creator}
@@ -27,7 +29,7 @@ block body
             p
                 a(href="#{webLink}/uploads/#{file}") #{file} 
         p
-            a.btn.btn-default.btn-block(href='/admin/yue/')
+            a.btn.btn-default.btn-block(href='/admin/yue/manage/')
                 i.fa.fa-arrow-circle-left
                 |   返回所有通知列表
         h2 评论区：
@@ -78,7 +80,7 @@ block body
                                 button.btn.btn-default(data-dismiss="modal") 关闭
     div.col-sm-4
         div.page-header
-            h2 通知以下人员：
+            h2 以下人员：
             
         div
             div

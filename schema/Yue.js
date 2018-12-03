@@ -13,6 +13,7 @@ exports = module.exports = function(app, mongoose) {
     numOfReader: { type:Number},
     numOfFinished: {type:Number},
     files:[{type:String}],
+    end:{type:Boolean},
     comments: [{
         cName:{type:String},
         username:{type:String},

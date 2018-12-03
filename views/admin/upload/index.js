@@ -48,3 +48,16 @@ exports.download = function(req, res, next){
     console.log(realpath);
     res.download(realpath,filename);
 };
+
+exports.read = function(req,res,next){
+    var realpath = 'localhost:8088/uploads/'+req.params.id;
+    var filename = "file.docx"
+    console.log(realpath);
+    res.sendFile(realpath, function (err) {
+        if (err) {
+          next(err);
+        } else {
+          console.log('Sent:', fileName);
+        }
+      });
+}

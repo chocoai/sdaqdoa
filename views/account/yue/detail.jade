@@ -10,25 +10,35 @@ block body
         p.page__desc 发布时间： #{yue.timeCreated}
         p.weui-cells__title 概述 #{yue.general}
         article.weui-article !{yue.body}
-        p 附件： 
+        p 附件：
             each file in yue.files
                 p.page__desc 
                     a(href="#{webLink}/uploads/#{file}") #{file} 
-        div.weui-panel
-            div.weui-panel__hd 阅签反馈 
-            if need
-                if gotit
-                    div.weui-cell
-                        button.weui-btn.weui-btn_default.weui-btn_plain-disabled(disabled) 已阅签
+        p   阅签反馈 
+        if !yue.end
+            div.weui-panel
+                if need
+                    if gotit
+                        div.weui-cell
+                            button.weui-btn.weui-btn_default.weui-btn_plain-disabled(disabled) 已阅签
+                    else
+                        form(method='post', action='/account/yue/detail/gotit/#{yue._id}/')
+                            div.weui-cell
+                                textarea.weui-textarea(name="gotit", rows="1" placeholder="添加你的反馈：我已阅" required) 已阅
+                            div.weui-cell
+                                button.weui-btn.weui-btn_warn(type='submit') 阅签
+                        
                 else
-                    form(method='post', action='/account/yue/detail/gotit/#{yue._id}/')
+                    p.page__desc 无须阅签
+        else
+                if need
+                    if gotit
                         div.weui-cell
-                            textarea.weui-textarea(name="gotit", rows="1" placeholder="添加你的反馈：我已阅" required) 已阅
-                        div.weui-cell
-                            button.weui-btn.weui-btn_warn(type='submit') 阅签
-                    
-            else
-                p.page__desc 无须阅签
+                            button.weui-btn.weui-btn_default.weui-btn_plain-disabled(disabled) 已阅签
+                    else
+                        p.page__desc 阅签已结束，请去管理员办公室手动阅签      
+                else
+                    p.page__desc 无须阅签
         div.weui-panel 
             div.weui-panel__hd 评论区
                 each comment,i in yue.comments
@@ -49,15 +59,15 @@ block body
                             ul.weui-media-box__info
                                 li.weui-media-box__info__meta #{comment.cName}
                                 li.weui-media-box__info__meta #{comment.cTime}
-
-        div.weui-panel
-            div.weui-panel__hd 添加评论
-            form(method='post', action='/account/yue/detail/comment/#{yue._id}/')
-                div.weui-cell
-                    div.weui-cell__bd
-                        textarea.weui-textarea(name="comment", id="words" rows="3"  onkeyup="pass()" placeholder="添加你的评论,大于5个字，阅签不要填在这里，这里是用来反馈疑问的" required)
-                div.weui-cell
-                        button.weui-btn.weui-btn_primary.weui-btn_disabled(type='submit' id="btn" disabled="true") 提交评论
+        if !yue.end
+            div.weui-panel
+                div.weui-panel__hd 添加评论
+                form(method='post', action='/account/yue/detail/comment/#{yue._id}/')
+                    div.weui-cell
+                        div.weui-cell__bd
+                            textarea.weui-textarea(name="comment", id="words" rows="3"  onkeyup="pass()" placeholder="添加你的评论,大于5个字，阅签不要填在这里，这里是用来反馈疑问的" required)
+                    div.weui-cell
+                            button.weui-btn.weui-btn_primary.weui-btn_disabled(type='submit' id="btn" disabled="true") 提交评论
         div.weui-panel 未完成人员
             each team in teams
                 div.weui-panel__hd #{team}

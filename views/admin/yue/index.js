@@ -60,6 +60,30 @@ exports.detail = function(req, res, next){
   });
 };
 
+exports.export = function(req, res, next){
+  req.app.db.models.Yue.findById(req.params.id).exec(function(err, result) {
+    if (err) {
+      return next(err);
+    }
+    if (req.xhr) {
+      res.send(yue);
+    }
+    else {
+      var readers = result.readers;
+      var teams = [];
+      //console.log(readers);
+      readers.forEach(function(reader,i,readers){
+        if(teams.indexOf(reader.team) == -1){
+          teams.push(reader.team);
+        }
+      });
+      //console.log(teams);
+      console.log(result);
+      res.render('admin/yue/export', { yue:result,teams:teams});
+    }
+  });
+};
+
 exports.record = function(req, res, next){
   var isGotIt = "noNeed";
   req.app.db.models.Yue.findById(req.params.id).exec(function(err, result) {

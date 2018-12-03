@@ -1,0 +1,73 @@
+extends ../../../layouts/admin
+
+block head
+  title #{yue.title}
+
+block body
+  div.row
+    div.col-sm-12
+        div.page-header
+            h1 #{yue.title}
+                if yue.end
+                   span.label.label-default 已结束
+        p 
+            strong 发布人:  
+            | #{yue.creator}
+        p 
+            strong 发布时间:  
+            | #{yue.timeCreated}
+        p 
+            strong 截止日期:  
+            | #{yue.timeFinished}
+        p.lead 
+            strong 概述:  
+            | #{yue.general}
+        p !{yue.body}
+        p 
+            strong 附件:  
+        each file in yue.files
+            p
+                a(href="#{webLink}/uploads/#{file}") #{file} 
+        p
+            a.btn.btn-default.btn-block(href='/admin/yue/manage/')
+                i.fa.fa-arrow-circle-left
+                |   返回所有通知列表
+        h2 评论区：
+        p 
+            each comment,i in yue.comments
+                blockquote #{comment.cBody}
+                    p.text-right #{comment.cName}
+                        small #{comment.cTime}
+        p 
+            each comment,i in yue.commentsByReaders
+                blockquote #{comment.cBody}
+                    p.text-right #{comment.cName}
+                        small #{comment.cTime}
+    div.col-sm-12
+        div.page-header
+            h2 需要以下人员阅签：
+        div
+            h3 未完成人员
+            each team in teams
+                div.col-sm-12
+                    div.weui-panel__hd #{team}
+                        div
+                            each reader in yue.readers
+                                if(team == reader.team)
+                                    if reader.isFinished==false
+                                        span.col-sm-4 #{reader.name}
+                                        span.col-sm-4 未阅签，需补签
+                                        span.col-sm-4 #{reader.fTime}
+            h3 已阅签人员
+            each team in teams
+                div.col-sm-12
+                    div.weui-panel__hd #{team}
+                        div
+                            each reader in yue.readers
+                                if(team == reader.team)
+                                    if reader.isFinished
+                                        span.col-sm-4 #{reader.name}
+                                        span.col-sm-4 #{reader.fb}
+                                        span.col-sm-4 #{reader.fTime}
+
+

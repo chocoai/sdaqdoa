@@ -13,7 +13,7 @@ exports.findall = function(req, res, next){
 
   req.app.db.models.Yue.pagedFind({
     filters: filters,
-    keys: 'title general creator isImportant timeFinished type readers',
+    keys: 'title general creator isImportant timeFinished type readers end',
     limit: req.query.limit,
     page: req.query.page,
     sort: req.query.sort

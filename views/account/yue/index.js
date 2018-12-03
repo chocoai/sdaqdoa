@@ -18,7 +18,7 @@ exports.findmy = function(req, res, next){
 
   req.app.db.models.Yue.pagedFind({
     filters: filters,
-    keys: 'title general creator isImportant timeFinished type readers',
+    keys: 'title general creator isImportant timeFinished type readers end',
     limit: req.query.limit,
     page: req.query.page,
     sort: req.query.sort
@@ -152,6 +152,10 @@ exports.comment= function(req, res, next){
 exports.gotit= function(req, res, next){
   var workflow = req.app.utility.workflow(req, res);
   var readers = [];
+  var commentTime = new Date();
+  var timeCreated = commentTime.getFullYear()+"年"+(commentTime.getMonth()+1)+"月"+commentTime.getDate()+"日"+commentTime.getHours()+":"+commentTime.getMinutes()+":"+commentTime.getSeconds();
+
+
   //console.log(req.user);
   
   workflow.on('validate', function() {
@@ -160,7 +164,7 @@ exports.gotit= function(req, res, next){
   });
 
     workflow.on('gotit', function() {
-    if(req.body.comment == ""){req.body.comment = "已阅"}
+    if(req.body.gotit == ""){req.body.gotit = "已阅"}
     req.app.db.models.Yue.findById(req.params.id).exec(function(err, result) {
       if (err) {
         return next(err);
@@ -177,7 +181,9 @@ exports.gotit= function(req, res, next){
         var req_user = readers.findIndex(function(element,index,array){return element.id == req.user.username;});
         //console.log(readers[req_user]);
         readers[req_user].isFinished = true;
-        readers[req_user].fb = req.body.comment;
+        console.log(req.body.gotit);
+        readers[req_user].fb = req.body.gotit;
+        readers[req_user].fTime = timeCreated;
         var fieldsToSet = {
           readers:readers
         }

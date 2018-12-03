@@ -111,6 +111,7 @@ workflow.on('createArticle', function() {
     body:req.body.body,
     timeCreated:timeCreate.getFullYear()+"年"+(timeCreate.getMonth()+1)+"月"+timeCreate.getDate()+"日"+timeCreate.getHours()+":"+timeCreate.getMinutes()+":"+timeCreate.getSeconds(),
     readers:readers,
+    end:false,
     files:file_names,
     isImportant:req.body.isImportant,
     timeFinished:req.body.timeFinished,

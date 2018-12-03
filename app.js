@@ -18,7 +18,8 @@ var config = require('./config'),
     multer = require('multer'),
     csrf = require('csurf'),
     querystring = require('querystring'),
-    schedule = require("node-schedule");
+    schedule = require("node-schedule"),
+    daily = require("./views/admin/yue/manage");
 var API = wechat.API;
 //var api = new API('wxf01fb15a9cbdef24', 'AU2gpQG0Ui_9P1dFdAgYMnnHMzmA0YsA859X8mkArFMgKCFOby-BF3busxniltMa', '28');
 
@@ -144,3 +145,15 @@ app.server.listen(app.config.port, function(){
   //and... we're live
   console.log('Server is running on port ' + config.port);
 });
+
+//定时管理
+
+schedule.scheduleJob('30 00 09 * * *', function(){//早上通知未阅签人员
+  daily.dailyPlan1(app);
+  console.log('定时任务' + new Date());
+}); 
+
+schedule.scheduleJob('50 0 22 * * *', function(){//晚上关闭过期阅签
+  daily.dailyPlan2(app);
+  console.log('定时任务' + new Date());
+}); 

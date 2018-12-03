@@ -18,6 +18,8 @@ block body
                                         span #{yue.title} 
                                     if yue.isImportant
                                         span.weui-badge(style="margin-left: 5px;") 重要 
+                                    if yue.end
+                                        span.weui-badge(style="margin-left: 5px;") 已结束
                                 p.weui-media-box__desc #{yue.general}
                                 ul.weui-media-box__info
                                     li.weui-media-box__info__meta #{yue.type}

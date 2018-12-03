@@ -14,48 +14,110 @@ block body
                             th #
                             th 类型
                             th(width="20%") 名称
-                            th(width="40%") 概述
+                            th(width="30%") 概述
                             th 截至日期
                             th 发布人
                             th 操作
                     tbody
                         each yue,i in data
-                            tr
-                                td #{i+1}
-                                td #{yue.type}
-                                td #{yue.title}
-                                    if yue.isImportant
-                                        span.label.label-danger 重要
-                                td #{yue.general}
-                                td #{yue.timeFinished}
-                                td #{yue.creator}
-                                td 
-                                    form(method='post', action='/admin/yue/ding/#{yue._id}/')
-                                        a.btn.btn-default(href="/admin/yue/detail/#{yue._id}") 查看
-                                        button.btn.btn-success(type="button" data-toggle="modal" data-target="#dingModal#{yue._id}") 钉钉
-                                        div.modal.fade(id="dingModal#{yue._id}" tabindex="-1" role="dialog" aria-labelledby="dingModalLabel")
-                                            div.modal-dialog(role="document")
-                                                div.modal-content
-                                                    div.modal-header
-                                                        button.close(type="button" class="close" data-dismiss="modal" aria-label="Close")
-                                                            span(aria-hidden="true") &times;
-                                                        h4.modal-title(id="dingModalLabel") 确认钉钉推送
-                                                    p 通过钉钉发送通知，请不要重复发送，以免打扰用户
-                                                    div.modal-footer
-                                                        div.form-group
-                                                            button.btn.btn-success(type='submit') 钉钉推送
-                                                            button.btn.btn-default(data-dismiss="modal") 关闭
-                                    form(method='post', action='/admin/yue/delete/#{yue._id}/')
-                                        a.btn.btn-warning(href="/admin/yue/edit/#{yue._id}") 编辑
-                                        button.btn.btn-danger(type="button" data-toggle="modal" data-target="#deleteModal") 删除
-                                        div.modal.fade(id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel")
-                                            div.modal-dialog(role="document")
-                                                div.modal-content
-                                                    div.modal-header
-                                                        button.close(type="button" class="close" data-dismiss="modal" aria-label="Close")
-                                                            span(aria-hidden="true") &times;
-                                                        h4.modal-title(id="myModalLabel") 确认删除
-                                                    div.modal-footer
-                                                        div.form-group
-                                                            button.btn.btn-danger(type='submit') 删除
-                                                            button.btn.btn-default(data-dismiss="modal") 关闭
+                            if yue.end
+                                tr.active
+                                    td #{i+1}
+                                    td #{yue.type}
+                                    td 
+                                        a(href="/admin/yue/detail/#{yue._id}") #{yue.title}
+                                        if yue.isImportant
+                                            span.label.label-danger 重要
+                                        if yue.end
+                                            span.label.label-default 结束
+                                    td #{yue.general}
+                                    td #{yue.timeFinished}
+                                    td #{yue.creator}
+                                    td 
+                                        form(method='post', action='/admin/yue/open/#{yue._id}/')
+                                                a.btn.btn-info(href="/admin/yue/export/#{yue._id}") 导出
+                                                button.btn.btn-danger(type="button" data-toggle="modal" data-target="#openModal#{yue._id}") 打开
+                                                div.modal.fade(id="openModal#{yue._id}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel")
+                                                    div.modal-dialog(role="document")
+                                                        div.modal-content
+                                                            div.modal-header
+                                                                button.close(type="button" class="close" data-dismiss="modal" aria-label="Close")
+                                                                    span(aria-hidden="true") &times;
+                                                                h4.modal-title(id="myModalLabel") 确认重新打开
+                                                            p #{yue.title}
+                                                            div.modal-footer
+                                                                div.form-group
+                                                                    button.btn.btn-danger(type='submit') 打开阅签
+                                                                    button.btn.btn-default(data-dismiss="modal") 关闭
+                            else
+                                tr
+                                    td #{i+1}
+                                    td #{yue.type}
+                                    td 
+                                        a(href="/admin/yue/detail/#{yue._id}") #{yue.title}
+                                        if yue.isImportant
+                                            span.label.label-danger 重要
+                                        if yue.end
+                                            span.label.label-default 结束
+                                    td #{yue.general}
+                                    td #{yue.timeFinished}
+                                    td #{yue.creator}
+                                    td 
+                                            form(method='post', action='/admin/yue/ding/#{yue._id}/')
+                                                a.btn.btn-default(href="/admin/yue/detail/#{yue._id}") 查看
+                                                if !yue.end
+                                                    button.btn.btn-success(type="button" data-toggle="modal" data-target="#dingModal#{yue._id}") 钉钉
+                                                else
+                                                    button.btn.btn-success(type="button" data-toggle="modal" data-target="#" disabled) 钉钉
+                                                div.modal.fade(id="dingModal#{yue._id}" tabindex="-1" role="dialog" aria-labelledby="dingModalLabel")
+                                                    div.modal-dialog(role="document")
+                                                        div.modal-content
+                                                            div.modal-header
+                                                                button.close(type="button" class="close" data-dismiss="modal" aria-label="Close")
+                                                                    span(aria-hidden="true") &times;
+                                                                h4.modal-title(id="dingModalLabel") 确认钉钉推送
+                                                            p 通过钉钉发送通知，请不要重复发送，以免打扰用户
+                                                            p #{yue.title}
+                                                            div.modal-footer
+                                                                div.form-group
+                                                                    button.btn.btn-success(type='submit') 钉钉推送
+                                                                    button.btn.btn-default(data-dismiss="modal") 关闭
+                                            form(method='post', action='/admin/yue/delete/#{yue._id}/')
+                                                if !yue.end
+                                                    a.btn.btn-warning(href="/admin/yue/edit/#{yue._id}") 编辑
+                                                else
+                                                    a.btn.btn-warning(href="#" disabled) 编辑
+                                                if !yue.end
+                                                    button.btn.btn-danger(type="button" data-toggle="modal" data-target="#deleteModal#{yue._id}") 删除
+                                                else
+                                                    button.btn.btn-danger(type="button" data-toggle="modal" data-target="#" disabled) 删除
+                                                div.modal.fade(id="deleteModal#{yue._id}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel")
+                                                    div.modal-dialog(role="document")
+                                                        div.modal-content
+                                                            div.modal-header
+                                                                button.close(type="button" class="close" data-dismiss="modal" aria-label="Close")
+                                                                    span(aria-hidden="true") &times;
+                                                                h4.modal-title(id="myModalLabel") 确认删除
+                                                            p #{yue.title}
+                                                            div.modal-footer
+                                                                div.form-group
+                                                                    button.btn.btn-danger(type='submit') 删除
+                                                                    button.btn.btn-default(data-dismiss="modal") 关闭
+                                            form(method='post', action='/admin/yue/finish/#{yue._id}/')
+                                                a.btn.btn-info(href="/admin/yue/export/#{yue._id}") 导出
+                                                if !yue.end
+                                                    button.btn.btn-danger(type="button" data-toggle="modal" data-target="#finishModal#{yue._id}") 结束
+                                                else
+                                                    button.btn.btn-danger(type="button" data-toggle="modal" data-target="#" disabled) 结束
+                                                div.modal.fade(id="finishModal#{yue._id}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel")
+                                                    div.modal-dialog(role="document")
+                                                        div.modal-content
+                                                            div.modal-header
+                                                                button.close(type="button" class="close" data-dismiss="modal" aria-label="Close")
+                                                                    span(aria-hidden="true") &times;
+                                                                h4.modal-title(id="myModalLabel") 确认结束
+                                                            p #{yue.title}
+                                                            div.modal-footer
+                                                                div.form-group
+                                                                    button.btn.btn-danger(type='submit') 结束阅签
+                                                                    button.btn.btn-default(data-dismiss="modal") 关闭

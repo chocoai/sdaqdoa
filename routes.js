@@ -117,19 +117,21 @@ exports = module.exports = function(app, passport) {
     app.get('/admin/yue/add/',require('./views/admin/yue/add').add);
     app.post('/admin/yue/add/',upload.single('avatar'),require('./views/admin/yue/add').create);
     app.get('/admin/yue/manage/',require('./views/admin/yue/manage').findall);
-    app.get('/admin/yue/detail/:id',require('./views/admin/yue/index').detail);
+    app.get('/admin/yue/detail/:id',require('./views/admin/yue/index').detail);//详情
+    app.get('/admin/yue/export/:id',require('./views/admin/yue/index').export);//导出
     app.post('/admin/yue/detail/comment/:id/', require('./views/admin/yue/index').comment);
     app.post('/admin/yue/ding/:id/',require('./views/admin/yue/ding').noti);
     app.post('/admin/yue/delete/:id/',require('./views/admin/yue/manage').delete);
     app.get('/admin/yue/edit/:id/',require('./views/admin/yue/edit').editinit);//编辑
     app.post('/admin/yue/edit/:id/',require('./views/admin/yue/edit').save);
     app.post('/admin/yue/detail/commentbyreaders/:id/', require('./views/admin/yue/index').commentbyreaders);
-
+    app.post('/admin/yue/finish/:id/',require('./views/admin/yue/manage').finish);//结束阅签
+    app.post('/admin/yue/open/:id/',require('./views/admin/yue/manage').open);//结束阅签
   //upload
   app.get('/admin/upload/', require('./views/admin/upload/index').index);
   app.post('/admin/upload', require('./views/admin/upload/index').uploader);
   app.get('/uploads/:id',require('./views/admin/upload/index').download);//下载文件
-
+  app.get('/uploads/read/:id',require('./views/admin/upload/index').read);//在线浏览文件
   //admin > users
   app.get('/admin/users/', require('./views/admin/users/index').find);
   app.post('/admin/users/', require('./views/admin/users/index').create);
@@ -283,6 +285,7 @@ exports = module.exports = function(app, passport) {
   app.get('/account/upload/', require('./views/account/upload/index').index);
   app.post('/account/upload', require('./views/account/upload/index').uploader);
   app.get('/uploads/:id',require('./views/account/upload/index').download);
+  app.get('/uploads/read/:id',require('./views/admin/upload/index').read);//在线浏览文件
     //account > measurement
   app.get('/account/measurement/', require('./views/account/measurement/index').find);
   app.get('/account/measurement/normal/:id/', require('./views/account/measurement/index').normal);

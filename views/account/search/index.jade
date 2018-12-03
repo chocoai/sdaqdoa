@@ -10,11 +10,21 @@ block body
                     form.weui-search-bar__form(action="/account/search/" method="POST")
                         div.weui-search-bar__box
                             i.weui-icon-search
-                            input.weui-search-bar__input#searchInput(type="search" placeholder="搜索" name="text" required="")
+                            input.weui-search-bar__input#searchInput(type="search" placeholder="搜索" name="text" required="" value="#{word}") 
                             a.weui-icon-clear#searchClear(href="javascript:")
                         label.weui-search-bar__label#searchText
                             i.weui-icon-search
                             span 所有
                     a.weui-search-bar__cancel-btn#searchCancel(href="javascript:" ) 取消
-        p.desc 功能还没做好~~~~
+        each result,i in results
+            a.weui-media-box.weui-media-box_appmsg(href="/account/#{result.t}/detail/#{result._id}")
+                        div.weui-media-box__bd
+                            h4.weui-media-box__title #{result.title}
+                                if result.isImportant
+                                    span.weui-badge(style="margin-left: 5px;") 重要
+                            p.weui-media-box__desc #{result.general}
+                            ul.weui-media-box__info
+                                li.weui-media-box__info__meta #{result.type}
+                                li.weui-media-box__info__meta #{result.creator}
+                                li.weui-media-box__info__meta 截止：#{result.timeFinished}
     script(src="/assets/js/search.js")

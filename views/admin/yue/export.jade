@@ -46,28 +46,28 @@ block body
     div.col-sm-12
         div.page-header
             h2 需要以下人员阅签：
-        div
             h3 未完成人员
-            each team in teams
-                div.col-sm-12
-                    div.weui-panel__hd #{team}
-                        div
-                            each reader in yue.readers
-                                if(team == reader.team)
-                                    if reader.isFinished==false
-                                        span.col-sm-4 #{reader.name}
-                                        span.col-sm-4 未阅签，需补签
-                                        span.col-sm-4 #{reader.fTime}
+            table.table
+                each team in teams
+                        each reader in yue.readers
+                            if(team == reader.team)
+                                if reader.isFinished==false
+                                    tr
+                                        td #{reader.name}
+                                        td #{team}
+                                        td 未阅签，需补签
+                                        td #{reader.fTime}
             h3 已阅签人员
-            each team in teams
-                div.col-sm-12
-                    div.weui-panel__hd #{team}
-                        div
+            table.table
+                each team in teams
+                    
                             each reader in yue.readers
                                 if(team == reader.team)
                                     if reader.isFinished
-                                        span.col-sm-4 #{reader.name}
-                                        span.col-sm-4 #{reader.fb}
-                                        span.col-sm-4 #{reader.fTime}
+                                        tr
+                                            td #{reader.name}
+                                            td #{team}
+                                            td #{reader.fb}
+                                            td #{reader.fTime}
 
 

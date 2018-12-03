@@ -78,41 +78,45 @@ exports.getUsersList = function(callback){
                 let rawData = '';
                 res.on('data', (chunk) => rawData += chunk);
                 res.on('end', () => {
-                  try {
-                    const departData = JSON.parse(rawData);
-                    console.log(departData);
-                    console.log("得到部门信息～～～～～～～"+departData.department.length);
-                    //console.log(departData.department);//得到departments
-                    departData.department.forEach(function(depart,i,departments){
-                        https.get(config.userListUrl+access_token+'&department_id='+depart.id, (res) => {
-                            // Do stuff with response
-                            numOfTeam++;
-                            res.setEncoding('utf8');
-                            let rawData = '';
-                            res.on('data', (chunk) => rawData += chunk);
-                            res.on('end', () => {
-                              try {
-                                const UsersListData = JSON.parse(rawData);
-                                //console.log(depart);
-                                depart.users = UsersListData;
-                                //console.log(UsersListData);
-                                usersList.push(depart);
-                                if(usersList.length == departData.department.length){
-                                    console.log("压入数量"+usersList.length);
-                                    console.log("部门数量"+departData.department.length);
-                                    usersList.sort(function(a,b){
-                                        return a.parentid-b.parentid
+                    try {
+                        const departData = JSON.parse(rawData);
+                        console.log(departData);
+                        console.log("得到部门信息～～～～～～～"+departData.department.length);
+                        //console.log(departData.department);//得到departments
+                        departData.department.forEach(function(depart,i,departments){
+                            console.log(depart.id == 7637662);
+                            if(depart.id != 7637662){
+                                console.log(depart.id);
+                                https.get(config.userListUrl+access_token+'&department_id='+depart.id, (res) => {
+                                    // Do stuff with response
+                                    numOfTeam++;
+                                    res.setEncoding('utf8');
+                                    let rawData = '';
+                                    res.on('data', (chunk) => rawData += chunk);
+                                    res.on('end', () => {
+                                    try {
+                                        const UsersListData = JSON.parse(rawData);
+                                        //console.log(depart);
+                                        depart.users = UsersListData;
+                                        //console.log(UsersListData);
+                                        usersList.push(depart);
+                                        if((usersList.length+1) == departData.department.length){
+                                            console.log("压入数量"+usersList.length);
+                                            console.log("部门数量"+departData.department.length);
+                                            usersList.sort(function(a,b){
+                                                return a.parentid-b.parentid
+                                            });
+                                            callback(usersList);
+                                        }
+                                        } catch (e) {
+                                            console.log(e.message);
+                                        }
+                                        });
+                                    }).on('error', (e) => {
+                                        console.log(`Got error: ${e.message}`);
                                     });
-                                    callback(usersList);
-                                }
-                                } catch (e) {
-                                    console.log(e.message);
-                                }
-                                });
-                            }).on('error', (e) => {
-                                console.log(`Got error: ${e.message}`);
-                            });
-                    });
+                            }      
+                        });
                     
                     } catch (e) {
                         console.log(e.message);

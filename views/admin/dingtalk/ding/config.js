@@ -1,6 +1,6 @@
 'use strict';
 
-exports.tokenUrl = "http://47.90.4.9:8887/api/getAccessToken";//10.24.186.104:8887
+exports.tokenUrl = "http://10.24.186.104:8887/api/getAccessToken";//10.24.186.104:8887
 exports.departmentsUrl = "https://oapi.dingtalk.com/department/list?access_token=";
 exports.userListUrl = "https://oapi.dingtalk.com/user/list?access_token=";
 

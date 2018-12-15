@@ -4,11 +4,11 @@ exports.noti = function(req, res, next){
   req.query.name = req.query.name ? req.query.name : '';
   req.query.limit = req.query.limit ? parseInt(req.query.limit, null) : 100;
   req.query.page = req.query.page ? parseInt(req.query.page, null) : 1;
-  req.query.sort = req.query.sort ? req.query.sort : '_id';
+  req.query.sort = req.query.sort ? req.query.sort : '-_id';
 
   var filters = {};
   var type = "通知";
-  filters.type=type;
+  //filters.type=type;
   if (req.query.username) {
     filters.title = new RegExp('^.*?'+ req.query.username +'.*$', 'i');
   }
@@ -31,7 +31,7 @@ exports.noti = function(req, res, next){
     }
     else {
       results.filters = req.query;
-      var articles = results.data.reverse();
+      var articles = results.data;
       res.render('account/noti/noti/noti', { data: articles,type:type});
     }
   });

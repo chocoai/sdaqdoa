@@ -9,7 +9,7 @@ exports.search = function(req, res){
     var articles = [];
     req.query.limit = req.query.limit ? parseInt(req.query.limit, null) : 100;
     req.query.page = req.query.page ? parseInt(req.query.page, null) : 1;
-    req.query.sort = req.query.sort ? req.query.sort : '_id';
+    req.query.sort = req.query.sort ? req.query.sort : '-_id';
   
     var filters = {};
     if (req.body.text) {

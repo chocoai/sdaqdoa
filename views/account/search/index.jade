@@ -19,9 +19,14 @@ block body
         each result,i in results
             a.weui-media-box.weui-media-box_appmsg(href="/account/#{result.t}/detail/#{result._id}")
                         div.weui-media-box__bd
-                            h4.weui-media-box__title #{result.title}
-                                if result.isImportant
-                                    span.weui-badge(style="margin-left: 5px;") 重要
+                            if result.t == "noti"
+                                h4.weui-media-box__title.title_noti #{result.title}
+                                    if result.isImportant
+                                        span.weui-badge(style="margin-left: 5px;") 重要
+                            else
+                                h4.weui-media-box__title.title_yue #{result.title}
+                                    if result.isImportant
+                                        span.weui-badge(style="margin-left: 5px;") 重要
                             p.weui-media-box__desc #{result.general}
                             ul.weui-media-box__info
                                 li.weui-media-box__info__meta #{result.type}

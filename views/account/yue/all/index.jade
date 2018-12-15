@@ -10,7 +10,7 @@ block body
                 each yue,i in data
                     a.weui-media-box.weui-media-box_appmsg(href="/account/yue/detail/#{yue._id}")
                         div.weui-media-box__bd
-                            h4.weui-media-box__title #{yue.title}
+                            h4.weui-media-box__title.title_yue #{yue.title}
                                 if yue.isImportant
                                     span.weui-badge(style="margin-left: 5px;") 重要
                                 if yue.end

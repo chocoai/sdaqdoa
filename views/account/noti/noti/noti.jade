@@ -10,7 +10,7 @@ block body
                 each noti,i in data
                     a.weui-media-box.weui-media-box_appmsg(href="/account/noti/detail/#{noti._id}")
                         div.weui-media-box__bd
-                            h4.weui-media-box__title #{noti.title}
+                            h4.weui-media-box__title.title_noti #{noti.title}
                                 if noti.isImportant
                                     span.weui-badge(style="margin-left: 5px;") 重要
                             p.weui-media-box__desc #{noti.general}

@@ -8,6 +8,12 @@
     font-weight: 400;
     margin: 0 15%;
 }
+.title_noti {
+    color: #04BE02;
+}
+.title_yue {
+    color: #EC3316;
+}
 .page__desc {
     text-align: center;
     color: #888;

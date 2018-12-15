@@ -8,13 +8,19 @@ block body
         div.col-sm-12
             div.page-header
                 h1 管理通知列表
+                form(method='post', action='/admin/noti/manage/')
+                    div.row
+                        div.col-sm-6
+                            input.form-control(type='month', name='month' value="#{month}") 
+                        div.col-sm-6
+                            button.btn.btn-success.btn-details 搜 索
                 table.table.table-hover
                     thead
                         tr
                             th #
                             th 类型
                             th(width="20%") 名称
-                            th(width="40%")概述
+                            th(width="40%") 概述
                             th 截至日期
                             th 发布人
                             th 操作

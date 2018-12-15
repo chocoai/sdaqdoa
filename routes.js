@@ -103,7 +103,8 @@ exports = module.exports = function(app, passport) {
   app.get('/admin/noti/',require('./views/admin/noti/index').findall);
   app.get('/admin/noti/add/',require('./views/admin/noti/add').add);
   app.post('/admin/noti/add/',upload.single('avatar'),require('./views/admin/noti/add').create);
-  app.get('/admin/noti/manage/',require('./views/admin/noti/manage').findall);
+  app.get('/admin/noti/manage/',require('./views/admin/noti/manage').find);
+  app.post('/admin/noti/manage/',require('./views/admin/noti/manage').find);
   app.get('/admin/noti/detail/:id',require('./views/admin/noti/index').detail);
   app.post('/admin/noti/detail/comment/:id/', require('./views/admin/noti/index').comment);
   app.post('/admin/noti/ding/:id/',require('./views/admin/noti/ding').noti);
@@ -116,7 +117,8 @@ exports = module.exports = function(app, passport) {
     app.get('/admin/yue/',require('./views/admin/yue/index').findall);
     app.get('/admin/yue/add/',require('./views/admin/yue/add').add);
     app.post('/admin/yue/add/',upload.single('avatar'),require('./views/admin/yue/add').create);
-    app.get('/admin/yue/manage/',require('./views/admin/yue/manage').findall);
+    app.get('/admin/yue/manage/',require('./views/admin/yue/manage').find);
+    app.post('/admin/yue/manage/',require('./views/admin/yue/manage').find);
     app.get('/admin/yue/detail/:id',require('./views/admin/yue/index').detail);//详情
     app.get('/admin/yue/export/:id',require('./views/admin/yue/index').export);//导出
     app.post('/admin/yue/detail/comment/:id/', require('./views/admin/yue/index').comment);

@@ -13,7 +13,10 @@ block body
         p 附件：
             each file in yue.files
                 p.page__desc 
-                    a(href="#{webLink}/uploads/#{file}") #{file} 
+                    if file.split('/')[3]
+                        a(href="#{file.substr(6)}") #{file.split('/')[3]} 
+                    else
+                        a(href="#{webLink}/uploads/#{file}") #{file} 
         p   阅签反馈 
         if !yue.end
             div.weui-panel

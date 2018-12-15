@@ -19,8 +19,8 @@ $(function () {
             success: function (data) {
                 console.log(data);
                 if (data.status == true) {
-                    console.log(data.data.filename);
-                    $("#files").append(data.data.filename+"\n");
+                    console.log(data.data.path);
+                    $("#files").append(data.data.path+"\n");
                 }
                 if (data.status == "error") {
                     alert(data.msg);
@@ -57,7 +57,7 @@ $(function () {
                 console.log(data);
                 if (data.status == true) {
                     console.log(data.data);
-                    $("#imageUploaded").val("http://sdaoa.com:8088/uploads/"+data.data.filename);
+                    $("#imageUploaded").val("http://sdaoa.com:8088"+data.data.path.substr(6));
                 }
                 if (data.status == "error") {
                     alert(data.msg);

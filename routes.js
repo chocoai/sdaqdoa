@@ -130,6 +130,7 @@ exports = module.exports = function(app, passport) {
   //upload
   app.get('/admin/upload/', require('./views/admin/upload/index').index);
   app.post('/admin/upload', require('./views/admin/upload/index').uploader);
+  app.get('/admin/download', require('./views/admin/upload/index').download);
   // app.get('/uploads/:id',require('./views/admin/upload/index').download);//下载文件
   // app.get('/uploads/read/:id',require('./views/admin/upload/index').read);//在线浏览文件
   //admin > users

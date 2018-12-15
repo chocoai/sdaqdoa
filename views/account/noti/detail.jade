@@ -13,7 +13,10 @@ block body
         p 附件： 
             each file in noti.files
                 p.page__desc
-                    a(href="#{webLink}/uploads/#{file}") #{file} 
+                    if file.split('/')[3]
+                        a(href="#{file.substr(6)}") #{file.split('/')[3]} 
+                    else
+                        a(href="#{webLink}/uploads/#{file}") #{file} 
         div.weui-panel 
             div.weui-panel__hd 评论区
                 each comment,i in noti.comments

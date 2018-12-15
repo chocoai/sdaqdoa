@@ -27,7 +27,7 @@ block body
             strong 附件:  
         each file in yue.files
             p
-                a(href="#{webLink}/uploads/#{file}") #{file} 
+                a(href="#{file.substr(6)}") #{file.split('/')[3]} 
         p
             a.btn.btn-default.btn-block(href='/admin/yue/manage/')
                 i.fa.fa-arrow-circle-left

@@ -3,10 +3,11 @@ const multer = require('multer');
 const ejs = require('ejs');
 const path = require('path');
 var app = express();
-
+var moment = require('moment');
+var now = moment();
 //set storage engine
 const storage = multer.diskStorage({
-  destination:'./public/uploads',
+  destination:'./public/uploads/'+now.format('YYYY-MM'),
   filename:function(req,file,cb){
       console.log(file.originalname);
       cb(null,file.originalname+'-'+Date.now()+path.extname(file.originalname));
@@ -43,9 +44,12 @@ exports.uploader = function(req, res, next){
 };
 
 exports.download = function(req, res, next){
-    var realpath = '#{webLink}/uploads/'+req.params.id;
-    var filename = "file.docx"
-    console.log(realpath);
+    // var realpath = '#{webLink}/uploads/'+req.params.id;
+    // var filename = "file.docx"
+    console.log(req.query.file);
+    var realpath = req.query.file;
+    var filename = req.query.file.split('/')[3];;
+    console.log(realpath,filename);
     res.download(realpath,filename);
 };
 

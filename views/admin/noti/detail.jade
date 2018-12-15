@@ -25,7 +25,7 @@ block body
             strong 附件:  
         each file in noti.files
             p
-                a(href="#{webLink}/uploads/#{file}") #{file} 
+                a(href="#{file.substr(6)}") #{file.split('/')[3]} 
         p
             a.btn.btn-default.btn-block(href='/admin/noti/')
                 i.fa.fa-arrow-circle-left

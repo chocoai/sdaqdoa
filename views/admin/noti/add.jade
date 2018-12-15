@@ -19,27 +19,27 @@ block body
                     label 标题：（必填）
                     input.form-control(type='text', name='title' placeholder="标题" required="required")
                 div.form-group
+                    label 概述：（必填）
+                    textarea.form-control(type='text', rows="3" placeholder="此处文字用来推送消息，可以和标题相同" name='general' required="required")
+                div.form-group
                     label 是否重要：
                         input(type='checkbox', name='isImportant')
-                p 重要的通知，考虑置顶显示
                 label 通知以下人员（必填）(需多于一人，否则无效)
                 select(multiple="multiple" required="required" name="toPersons" id="persons")
                     each userList in userLists
                         optgroup(label="#{userList.team}")
                             each user in userList.userList
-                                option(value="#{user.username}/#{user.name}/#{userList.team}") #{user.name}
+                                option(value="#{user.username}/#{user.name}/#{userList.team}" selected) #{user.name}
                        
-                div.form-group
-                    label 概述：（必填）
-                    textarea.form-control(type='text', rows="3" placeholder="签阅内容的概述，字数最好不要超过300字" name='general' required="required")
+                
                 div.form-group
                     label 发布人：（必填）
-                    input.form-control(type='text', name='creator' required="required")                    
+                    input.form-control(type='text', name='creator' required="required" value="#{user}")            
                 div.form-group
                     label 截至时间：（必填）
-                    input.form-control(type='date', name='timeFinished' required="required") 
+                    input.form-control(type='date', name='timeFinished' required="required" value="#{date}") 
                 div.form-group
-                    label 正文：（必填）
+                    label 正文：（必填，默认已填7天后）
                     textarea.form-control(type='text', rows="50" placeholder="正文" name='body' id="editor" required="required")
                 div.form-group
                     label 文件上传

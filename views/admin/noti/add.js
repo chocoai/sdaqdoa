@@ -1,5 +1,5 @@
 var ding = require('./ding/ding.js');
-
+var moment = require('moment');
 exports.add = function(req, res, next){
   req.query.username = req.query.username ? req.query.username : '';
   req.query.limit = req.query.limit ? parseInt(req.query.limit, null) : 1000;
@@ -46,7 +46,8 @@ exports.add = function(req, res, next){
         });
       });
       //console.log(userLists);
-      res.render('admin/noti/add',{userLists:userLists});
+      var now = moment().add(7, 'days');
+      res.render('admin/noti/add',{userLists:userLists,date:now.format('YYYY-MM-DD'),user:req.user.name});
     }
   });
   // ding.getUsersList(function(users){

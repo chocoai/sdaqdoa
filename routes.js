@@ -130,8 +130,8 @@ exports = module.exports = function(app, passport) {
   //upload
   app.get('/admin/upload/', require('./views/admin/upload/index').index);
   app.post('/admin/upload', require('./views/admin/upload/index').uploader);
-  app.get('/uploads/:id',require('./views/admin/upload/index').download);//下载文件
-  app.get('/uploads/read/:id',require('./views/admin/upload/index').read);//在线浏览文件
+  // app.get('/uploads/:id',require('./views/admin/upload/index').download);//下载文件
+  // app.get('/uploads/read/:id',require('./views/admin/upload/index').read);//在线浏览文件
   //admin > users
   app.get('/admin/users/', require('./views/admin/users/index').find);
   app.post('/admin/users/', require('./views/admin/users/index').create);
@@ -284,8 +284,8 @@ exports = module.exports = function(app, passport) {
 //upload
   app.get('/account/upload/', require('./views/account/upload/index').index);
   app.post('/account/upload', require('./views/account/upload/index').uploader);
-  app.get('/uploads/:id',require('./views/account/upload/index').download);
-  app.get('/uploads/read/:id',require('./views/admin/upload/index').read);//在线浏览文件
+  //app.get('/uploads/:id',require('./views/account/upload/index').download);
+  // app.get('/uploads/read/:id',require('./views/admin/upload/index').read);//在线浏览文件
     //account > measurement
   app.get('/account/measurement/', require('./views/account/measurement/index').find);
   app.get('/account/measurement/normal/:id/', require('./views/account/measurement/index').normal);

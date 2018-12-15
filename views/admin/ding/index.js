@@ -56,11 +56,14 @@ exports.init = function(req, res, next){
 exports.send = function(req, res, next){
     console.log(req.body.text);
     var readers = "";
+    console.log(typeof(req.body.toPersons));
+    if(typeof(req.body.toPersons.length) == "string"){
       req.body.toPersons.forEach(function(person){
         readers += person.split('/')[0]+ ",";
       });
-
-    
+    }else{
+      readers += req.body.toPersons.split('/')[0]+ ",";
+    }    
     console.log(readers);
     Ding.ding(readers,req.body.text);
     res.redirect('/admin/ding');

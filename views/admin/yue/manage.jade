@@ -8,6 +8,18 @@ block body
         div.col-sm-12
             div.page-header
                 h1 管理通知列表
+                form(method='post', action='/admin/yue/add/email/')
+                    div.row
+                        div.col-sm-2
+                            p 邮件导入功能
+                        div.col-sm-8
+                            p 方法：将邮件（主题、正文、附件）转发至：
+                                a(hrf="mailto:sdaqdoa@163.com") sdaqdoa@163.com
+                                span 后，点击后面按钮，可以将邮件导入成一则阅签
+                            p 转换规则：主题-》名称和描述，正文-》正文，附件-》附件，默认为所有人全选，截止日期为7天后
+                        div.col-sm-2
+                            button.btn.btn-warning.btn-details 导入最新的邮件
+                br 
                 form(method='post', action='/admin/yue/manage/')
                     div.row
                         div.col-sm-6

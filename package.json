@@ -41,7 +41,9 @@
     "multer": "1.x.x",
     "wechat-enterprise": "*",
     "node-schedule": "1.x.x",
-    "request": "*"
+    "request": "*",
+    "imap-simple":"*",
+    "iconv-lite":"*"
   },
   "devDependencies": {
     "backbone": "1.x.x",

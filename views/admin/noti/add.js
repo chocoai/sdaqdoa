@@ -105,7 +105,7 @@ exports.create = function(req, res, next){
       }
 
       workflow.outcome.record = noti;
-      req.flash('success','Noti added');
+      req.flash('success','通知创建成功');
       res.location('/admin/noti/manage/');
       res.redirect('/admin/noti/manage/');
     });

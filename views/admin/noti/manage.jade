@@ -14,6 +14,10 @@ block body
                             input.form-control(type='month', name='month' value="#{month}") 
                         div.col-sm-6
                             button.btn.btn-success.btn-details 搜 索
+                form(method='post', action='/admin/noti/add/email/')
+                    div.row
+                        div.col-sm-6
+                            button.btn.btn-warning.btn-details 将邮箱里最新的邮件导入成通知
                 table.table.table-hover
                     thead
                         tr

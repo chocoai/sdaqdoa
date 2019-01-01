@@ -113,6 +113,9 @@ exports = module.exports = function(app, passport) {
   app.post('/admin/noti/edit/:id/',require('./views/admin/noti/edit').save);
   app.post('/admin/noti/detail/commentbyreaders/:id/', require('./views/admin/noti/index').commentbyreaders);
 
+  //admin > email >
+  app.post('/admin/noti/add/email/',upload.single('avatar'),require('./views/admin/noti/email').create);
+  app.post('/admin/yue/add/email/',upload.single('avatar'),require('./views/admin/yue/email').create);
     //admin > yue //通知功能
     app.get('/admin/yue/',require('./views/admin/yue/index').findall);
     app.get('/admin/yue/add/',require('./views/admin/yue/add').add);
